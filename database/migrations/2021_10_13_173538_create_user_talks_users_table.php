@@ -15,8 +15,8 @@ class CreateUserTalksUsersTable extends Migration
     {
         Schema::create('user_talks_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('user_id');
+            $table->foreignId('sender_id')->references('id')->on('users');
+            $table->foreignId('receiver_id')->references('id')->on('users');
             $table->string('message',1500);
             $table->boolean('sender_deleted')->default(false);
             $table->boolean('receiver_deleted')->default(false);

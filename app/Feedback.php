@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
-    public $incrementing = false;
-    protected $keyType = 'string';
     protected $fillable = [ 
         'user_id', 'massage', 'feedback_type',
     ];

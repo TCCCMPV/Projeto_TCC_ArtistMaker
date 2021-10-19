@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserBlocksUser extends Model
 {
-    public $incrementing = false;
-    
+    protected $fillable = [
+        'blocker_id', 'blocked_id',
+    ];
 }

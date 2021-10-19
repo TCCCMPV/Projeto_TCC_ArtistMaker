@@ -26,4 +26,8 @@ class Category extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',//timestamp para datetime
     ];
+
+
+    protected $fillable = [];
+
 */

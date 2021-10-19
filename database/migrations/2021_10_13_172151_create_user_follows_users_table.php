@@ -15,8 +15,9 @@ class CreateUserFollowsUsersTable extends Migration
     {
         Schema::create('user_follows_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('user_id');
+            $table->foreignId('followed_id')->references('id')->on('users');
+            $table->foreignId('follow_id')->references('id')->on('users');
+
         });
     }
 

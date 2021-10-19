@@ -15,8 +15,8 @@ class CreateUserBlocksUsersTable extends Migration
     {
         Schema::create('user_blocks_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('user_id');
+            $table->foreignId('blocker_id')->references('id')->on('users');;
+            $table->foreignId('blocked_id')->references('id')->on('users');;
         });
     }
 
