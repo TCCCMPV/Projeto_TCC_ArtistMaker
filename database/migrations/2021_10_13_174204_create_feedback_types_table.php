@@ -14,7 +14,7 @@ class CreateFeedbackTypesTable extends Migration
     public function up()
     {
         Schema::create('feedback_types', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->unique();
         });
     }
 

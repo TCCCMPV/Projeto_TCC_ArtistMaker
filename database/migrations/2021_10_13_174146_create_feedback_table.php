@@ -16,7 +16,7 @@ class CreateFeedbackTable extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('feedback_type');
+            $table->string('feedback_type_id')->references('id')->on('feedback_types');
             $table->string('message',500);
             $table->softDeletes();
             $table->timestamps();

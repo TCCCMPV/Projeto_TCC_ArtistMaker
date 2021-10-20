@@ -14,8 +14,8 @@ class CreateSubcategoriesTable extends Migration
     public function up()
     {
         Schema::create('subcategories', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('category_id');
+            $table->string('id')->unique();
+            $table->string('category_id')->references('id')->on('categories');
         });
     }
 

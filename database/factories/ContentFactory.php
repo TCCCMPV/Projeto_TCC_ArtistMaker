@@ -12,7 +12,7 @@ $factory->define(Model::class, function (Faker $faker) {
         'description' => realText(200, 2),
         'thumbnail' => imageUrl($width = 640, $height = 480),
         'language' => $faker->languageCode,
-        'qualification_level' => randomElement(array (null, 1,2,3))
+        'qualification_level' => randomElement(array (null, 1,2,3)),
         'subcategory_id'//ver depois
         'content_type_id'//ver depois,
         'position' => //ver depois

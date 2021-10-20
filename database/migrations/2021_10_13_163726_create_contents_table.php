@@ -22,7 +22,7 @@ class CreateContentsTable extends Migration
             $table->string('language',60)->default('pt-br');
             $table->integer('qualification_level');
             $table->foreignId('subcategory_id');
-            $table->foreignId('content_type_id');
+            $table->string('content_type_id')->references('id')->on('content_types');
             $table->integer('position')->nullable();
             $table->foreignId('content_id')->nullable();
             $table->foreignId('user_id');

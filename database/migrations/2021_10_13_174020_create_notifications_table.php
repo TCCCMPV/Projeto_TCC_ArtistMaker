@@ -15,7 +15,7 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notification_type');
+            $table->string('notification_type_id')->references('id')->on('notification_types');
             $table->foreignId('user_id');
             $table->text('message');
             $table->boolean('seen')->default(false);

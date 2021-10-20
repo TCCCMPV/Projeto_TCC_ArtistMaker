@@ -17,7 +17,7 @@ class CreateComplaintsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->integer('reported_object')->nullable();
-            $table->foreignId('complaint_type_id');
+            $table->string('complaint_type_id')->references('id')->on('complaint_types');
             $table->longText('description');
             $table->timestamps();
         });

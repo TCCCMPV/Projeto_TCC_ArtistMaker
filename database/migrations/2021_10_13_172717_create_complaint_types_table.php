@@ -14,7 +14,7 @@ class CreateComplaintTypesTable extends Migration
     public function up()
     {
         Schema::create('complaint_types', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->unique();
         });
     }
 
