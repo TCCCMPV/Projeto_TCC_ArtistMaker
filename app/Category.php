@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-
-    public $incrementing = false;//não increment
-    protected $keyType = 'string';//tipo varchar
+    public $incrementing = false;
+    protected $keyType = 'string';
 }
 
 
