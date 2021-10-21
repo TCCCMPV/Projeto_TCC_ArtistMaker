@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('nick',20);//varchar
             $table->string('full_name',70);
             $table->string('email',150)->unique();//único
-            $table->string('password',30);
+            $table->string('password',100);
             $table->string('picture',500)->default('storage\default\profile.png');//padrão
             $table->string('local',30)->default('Brazil');
             $table->string('language',60)->default('pt-br');
@@ -26,10 +26,10 @@ class CreateUsersTable extends Migration
             $table->dateTime('suspension_beginning')->nullable();
             $table->dateTime('suspension_end')->nullable();//oposto ao not null
             $table->softDeletes();
-            $table->float('rate',1,1)->nullable();//caracteres antes,depois da virgula
+            $table->float('rate')->nullable();//caracteres antes,depois da virgula
             $table->boolean('verified')->default(false);//verdadeiro ou falso
             $table->boolean('especialist')->default(false);
-            $table->dateTime('birth');
+            $table->date('birth');
             $table->longText('bio')->nullable();//muitos caracteres
             $table->dateTime('email_verified_at')->nullable();
             $table->rememberToken();

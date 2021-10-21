@@ -14,7 +14,7 @@ class SubcategorySeeder extends Seeder
      */
     public function run()
     {
-        //fundamentos-> forma, linha, perspectiva, anatomia, linhas, cor, composição, luz e sombra, outros
+        //fundamentos-> forma, linha, perspectiva, anatomia, linhas, cor, composição, luz e sombra, outros fundamentos
         DB::table('subcategories')->insert([
             'id' => 'forma',
             'category_id' => 'fundamentos',
@@ -48,10 +48,10 @@ class SubcategorySeeder extends Seeder
             'category_id' => 'fundamentos',
         ]);
         DB::table('subcategories')->insert([
-            'id' => 'outros',
+            'id' => 'outros fundamentos',
             'category_id' => 'fundamentos',
         ]);
-        //desenho-> hqs, ilustração, estilo, outros
+        //desenho-> hqs, ilustração, estilo, outros desenho
         DB::table('subcategories')->insert([
             'id' => 'hqs',
             'category_id' => 'desenho',
@@ -65,51 +65,51 @@ class SubcategorySeeder extends Seeder
             'category_id' => 'desenho',
         ]);
         DB::table('subcategories')->insert([
-            'id' => 'outros',
+            'id' => 'outros desenho',
             'category_id' => 'desenho',
         ]);
-        //tecnica-> grafite, pintura a óleo, gravura, aquarela, colagem, lápis de cor, giz de cera, guache, escultura,  outros
+        //técnica-> grafite, pintura a óleo, gravura, aquarela, colagem, lápis de cor, giz de cera, guache, escultura,  outros técnica
         DB::table('subcategories')->insert([
             'id' => 'grafite',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'pintura a óleo',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'gravura',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'aquarela',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'colagem',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'lápis de cor',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'giz de cera',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'guache',
-            'category_id' => 'desenho',
+            'category_id' => 'técnica',
         ]);
         DB::table('subcategories')->insert([
             'id' => 'escultura',
-            'category_id' => 'desenho',
+            'category_id' => 'tecnica',
         ]);
         DB::table('subcategories')->insert([
-            'id' => 'outros',
-            'category_id' => 'desenho',
+            'id' => 'outros técnica',
+            'category_id' => 'técnica',
         ]);
-        //digital-> pintura, cor, luz e sombra, software, hardware, modelagem 3D, outros
+        //digital-> pintura, cor, luz e sombra, software, hardware, modelagem 3D, outros digital
         DB::table('subcategories')->insert([
             'id' => 'pintura',
             'category_id' => 'digital',
@@ -135,7 +135,7 @@ class SubcategorySeeder extends Seeder
             'category_id' => 'digital',
         ]);
         DB::table('subcategories')->insert([
-            'id' => 'outros',
+            'id' => 'outros digital',
             'category_id' => 'digital',
         ]);
         //animação-> tradicional, 2D digital, 3D, stop motion, pixel, rotoscopia, motion graphics, outros
@@ -168,10 +168,10 @@ class SubcategorySeeder extends Seeder
             'category_id' => 'animação',
         ]);
         DB::table('subcategories')->insert([
-            'id' => 'outros',
+            'id' => 'outros animação',
             'category_id' => 'animação',
         ]);
-        //história-> arte na antiguidade, arte medieval, arte renascentista, arte barroca, arte do século 18, arte do século 19, arte do século 20
+        //história-> arte na antiguidade, arte medieval, arte renascentista, arte barroca, arte do século 18, arte do século 19, arte do século 20, outros história
         DB::table('subcategories')->insert([
             'id' => 'arte na antiguidade',
             'category_id' => 'história',
@@ -200,7 +200,11 @@ class SubcategorySeeder extends Seeder
             'id' => 'arte do século 20',
             'category_id' => 'história',
         ]);
-        //áudio e visual-> cinematografia, cenografia, áudio, edição de foto e vídeo, cinema, televisão, internet, outros
+        DB::table('subcategories')->insert([
+            'id' => 'outros história',
+            'category_id' => 'história',
+        ]);
+        //áudio e visual-> cinematografia, cenografia, áudio, edição de foto e vídeo, cinema, televisão, internet, outros áudio e visual
         DB::table('subcategories')->insert([
             'id' => 'cinematografia',
             'category_id' => 'áudio e visual',
@@ -230,7 +234,7 @@ class SubcategorySeeder extends Seeder
             'category_id' => 'áudio e visual',
         ]);
         DB::table('subcategories')->insert([
-            'id' => 'outros',
+            'id' => 'outros áudio e visual',
             'category_id' => 'áudio e visual',
         ]);
         //outros-> fotografia, moda, design, roteiro

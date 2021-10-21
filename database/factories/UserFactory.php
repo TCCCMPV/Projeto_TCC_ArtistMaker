@@ -5,6 +5,7 @@
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,26 +21,25 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
 
-        'nick' => $faker->firstName($gender = null|'male'|'female'),
+        'nick' => $faker->firstName(),
         'full_name' => $faker->name,
         'email' => $faker->email,
-        'password' =>//ver depois
-        'picture' => $faker->imageUrl($width = 640, $height = 480), // 'http://lorempixel.com/640/480/',
+        'password' =>Hash::make($faker->password),
+        'picture' => $faker->imageUrl($width = 640, $height = 480), // 'http://lorempixel.com/640/480/'
         'local' => $faker->locale,
         'language' => $faker->languageCode, // pt,
         'level' => '99',
-        'suspension_begining' => null,
-        'suspension_end' => null,
-        'deleted_at' => null,
+        //'suspension_begining' => ,
+        //'suspension_end' => ,
+       // 'deleted_at' => ,
         'rate' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 5),
         'verified' => $faker->boolean,
         'especialist' => $faker->boolean,
-        'birth' => //ver depois
+        'birth' => '2000-03-15',
         'bio' => $faker->realText($maxNbChars = 200, $indexSize = 2),
-        'email_verified_at' => $faker->dateTime($max = 'now', $timezone = BRT),// DateTime('2008-04-25 08:37:17', 'UTC'),
-        'remember_token' => //ver depois
-        'created_at' => $faker->dateTime($max = '2021-10-20 ', $timezone = BRT), // DateTime('2008-04-25 08:37:17', 'UTC'),
-        'updated_at' => $faker->dateTime($max = 'now', $timezone = null), // DateTime('2008-04-25 08:37:17', 'UTC');
-
+        'email_verified_at' => $faker->dateTime($max = 'now'),// DateTime('2008-04-25 08:37:17', 'UTC'),
+        //'remember_token' => ,
+        'created_at' => now(),
+        'updated_at' => now(),
     ];
 });
