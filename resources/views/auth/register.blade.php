@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<!--
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -74,4 +75,20 @@
         </div>
     </div>
 </div>
+//////////////////////////////////////////////////////////////////
+-->
+<form method="POST" action="{{ route('register') }}">
+    @csrf
+    <label>Nome completo:</label>
+    <input type="text" name="name" id="name"></br>
+    <label>Nick:</label>
+    <input type="text" name="nick" id="nick"></br>
+    <label>Email:</label>
+    <input type="text" name="email" id="email"></br>
+    <label>Senha:</label>
+    <input type="password" name="password" id="password"></br>
+    <label>Confirmar senha:</label>
+    <input type="password" name="password-confirm" id="password-confirm">
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
 @endsection

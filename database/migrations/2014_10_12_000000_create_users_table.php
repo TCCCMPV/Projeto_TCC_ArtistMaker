@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->float('rate')->nullable();//caracteres antes,depois da virgula
             $table->boolean('verified')->default(false);//verdadeiro ou falso
             $table->boolean('especialist')->default(false);
-            $table->date('birth');
+            $table->date('birth')->nullable();
             $table->longText('bio')->nullable();//muitos caracteres
             $table->dateTime('email_verified_at')->nullable();
             $table->rememberToken();
