@@ -9,4 +9,5 @@ class Image extends Model
     protected $fillable = [
         'image', 'content_id', 'legend', 'position'
     ];
+    public $timestamps = false;
 }

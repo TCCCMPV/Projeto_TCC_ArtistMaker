@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<nav>
+    <a href="{{route('tutorials')}}">Tutoriais</a>
+    <a href="{{route('courses')}}">Cursos</a>
+    <a href="{{route('modules')}}">Módulos</a>
+</nav>
 <!--
 <div class="container">
     <div class="row justify-content-center">
@@ -21,4 +26,5 @@
         </div>
     </div>
 </div> -->
+
 @endsection
