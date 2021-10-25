@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\Image;
+use App\Video;
 use App\Text;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,7 +24,9 @@ class TutorialController extends Controller
         $tutorial = Content::where('id',$id)->first();
         $images = Content::where('id',$id)->first()->images;
         $texts = Content::where('id',$id)->first()->texts()->get();
+        $videos = Content::where('id',$id)->first()->videos()->get();
         $mix = $images->merge($texts);
+        $mix = $mix->merge($videos);
         $mix = $mix->sortBy('position');
        return view('content.tutorial',['tutorial'=>$tutorial,'mix'=>$mix]);
     }
@@ -82,5 +85,25 @@ class TutorialController extends Controller
         $tutorial->save();
         //$tutorial = Content::max('id')->where('user_id',Auth::id())->first();
         return redirect()->route('tutorial', $tutorial->id);
+    }
+    public function NewVideo($id)
+    {
+        return view('content.tutorialNewVideo',['id'=>$id]);
+    }
+    public function InsertVideo(Request $request, $id)
+    {
+        $video = new Video;
+        $video->video = Storage::url($request->file('video')->store('public/tutorials/'.$id));
+        $video->position = $request->input('position');
+        $video->content_id = $id;
+        $video->save();
+        return redirect()->route('tutorial',$id);
+    }
+    public function DeleteVideo($id)
+    {
+        $video = Video::where('id',$id)->first();
+        $id = $video->content_id;
+        $video->delete();
+        return redirect()->route('tutorial',$id);
     }
 }

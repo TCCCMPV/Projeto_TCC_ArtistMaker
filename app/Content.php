@@ -22,4 +22,8 @@ class Content extends Model
     {
         return $this->hasMany('App\Text');
     }
+    public function videos()
+    {
+        return $this->hasMany('App\Video');
+    }
 }

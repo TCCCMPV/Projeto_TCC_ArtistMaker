@@ -22,11 +22,17 @@ Route::post('/tutorial/create-tutorial', 'TutorialController@NewTutorial')->name
 Route::post('/tutorial/{id}/new-text','TutorialController@NewText')->name('newText');
 Route::post('/tutorial/{id}/insert-text','TutorialController@InsertText')->name('insertText');
 Route::delete('/tutorial/{id}/delete-text','TutorialController@DeleteText')->name('deleteText');
+Route::view('tutorial/{id}/edit-text','content.tutorialEditText')->name('editText');
 
 Route::post('/tutorial/{id}/new-image','TutorialController@NewImage')->name('newImage');
 Route::post('/tutorial/{id}/insert-image','TutorialController@InsertImage')->name('insertImage');
 Route::delete('/tutorial/{id}/delete-image','TutorialController@DeleteImage')->name('deleteImage');
+Route::view('tutorial/{id}/edit-image','content.tutorialEditImage')->name('editImage');
 
+Route::post('/tutorial/{id}/new-video','TutorialController@NewVideo')->name('newVideo');
+Route::post('/tutorial/{id}/insert-video','TutorialController@InsertVideo')->name('insertVideo');
+Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->name('deleteVideo');
+Route::view('tutorial/{id}/edit-video','content.tutorialEditVideo')->name('editVideo');
 
 Route::get('/module/{id}', 'ModuleController@ShowModule')->name('module');
 Route::get('/course/{id}', 'CourseController@ShowCourse')->name('course');
