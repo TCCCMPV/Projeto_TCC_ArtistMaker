@@ -106,4 +106,30 @@ class TutorialController extends Controller
         $video->delete();
         return redirect()->route('tutorial',$id);
     }
+    public function EditTitle($id)
+    {
+    }
+    public function EditThumb($id)
+    {
+        $tutorial = Content::where('id',$id)->first();
+        return view('content.tutorialEditThumb',['tutorial'=>$tutorial]);
+    }
+    public function PutThumb(Request $request, $id)
+    {
+        if($request->file('thumb' == ''))
+        {
+            return redirect()->route('tutorial',$id);
+        }
+        else
+        {
+            $tutorial = Content::where('id',$id)->first();
+            $tutorial->thumbnail = Storage::url($request->file('thumb')->store('public/tutorial/'));
+            return redirect()->route('tutorial',$id);
+        }
+    }
+    public function EditText($id)
+    {
+        $text = Text::where('id',$id)->first();
+        return view('content.tutorialEditText',['text'=>$text]);
+    }
 }

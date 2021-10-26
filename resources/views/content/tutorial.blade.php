@@ -4,8 +4,11 @@
     <p>Criado por:{{$tutorial->user->nick}}</p>
     <h2>Thumb:</h2>
     <img src="{{$tutorial->thumbnail}}" width="200px">
+    <a href="{{route('editTutorialThumb',$tutorial->id)}}">Editar thumb</a>
+
     <hr>
 
+    
     @foreach ($mix as $mic)
         @if ($mic->text !== null)<!--text-->
             <p>{{$mic->text}}</p>
@@ -15,10 +18,7 @@
                     @method('DELETE')
                     <input type="submit" value="Deletar"><!--deletar texto-->
                 </form>
-                <form action="{{route('editText',$mic->id)}}" method="get">
-                    @csrf
-                    <input type="submit" value="Editar"><!--editar texto-->
-                </form>
+                <a href="{{route('editTutorialThumb',$tutorial->id)}}">Editar thumb</a>
             @endif
         @elseif ($mic->video !== null)
             <video width="400" class="video-fluid z-depth-1" controls preload="auto"  poster="{{$tutorial->thumbnail}}">
