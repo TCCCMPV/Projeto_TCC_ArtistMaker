@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('full_name',70);
             $table->string('email',150)->unique();//único
             $table->string('password',100);
-            $table->string('picture',500)->default('public/default/profile.png');//padrão
+            $table->string('picture',500)->default('default/UnknownUser.png');//padrão
             $table->string('local',30)->default('Brazil');
             $table->string('language',60)->default('pt-br');
             $table->integer('level')->default('99');//int

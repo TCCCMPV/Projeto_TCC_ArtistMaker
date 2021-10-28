@@ -14,25 +14,7 @@ use Illuminate\Http\Request;
 
 class TutorialController extends Controller
 {
-    
-    //Tutorial configs
 
-    public function NewTutorial(Request $request)
-    {
-        $tutorial = new Content;
-        $tutorial->name = $request->input('name');
-        $tutorial->user_id = Auth::id();
-        $tutorial->thumbnail = Storage::url($request->file('image')->store('public/tutorial'));
-        $tutorial->content_type_id = "tutorial";
-        $tutorial->save();
-        //$tutorial = Content::max('id')->where('user_id',Auth::id())->first();
-        return redirect()->route('tutorial', $tutorial->id);
-    }
-    public function ShowTutorials()
-    {
-        $tutorials = Content::where('content_type_id','tutorial')->get();
-        return view('search.tutorials',['tutorials'=>$tutorials]);
-    }
     public function ShowTutorial($id)
     {
         $tutorial = Content::where('id',$id)->first();
@@ -42,22 +24,33 @@ class TutorialController extends Controller
         $mix = $images->merge($texts);
         $mix = $mix->merge($videos);
         $mix = $mix->sortBy('position');
-        return view('content.tutorial',['tutorial'=>$tutorial,'mix'=>$mix]);
+        return view('content.tutorial.tutorial',['tutorial'=>$tutorial,'mix'=>$mix]);
+    }
+    public function NewTutorial()
+    {
+        return view('content.tutorial.new');
+    }
+    public function PostTutorial(Request $request)
+    {
+        $tutorial = new Content;
+        $tutorial->name = $request->input('name');
+        $tutorial->user_id = Auth::id();
+        $tutorial->thumbnail = Storage::url($request->file('image')->store('storage/'.$tutorial->user_id.'/tutorials/thumbnails'));
+        $tutorial->content_type_id = 'tutorial';
+        $tutorial->save();
+        return redirect()->route('tutorial', $tutorial->id);
     }
 
-    //Título
+    //edits
 
     public function EditTitle($id)
     {
         
     }
-
-    //Thumb
-
     public function EditThumb($id)
     {
         $tutorial = Content::where('id',$id)->first();
-        return view('content.tutorialEditThumb',['tutorial'=>$tutorial]);
+        return view('content.tutorial.EditThumb',['tutorial'=>$tutorial]);
     }
     public function PutThumb(Request $request, $id)
     {
@@ -73,8 +66,35 @@ class TutorialController extends Controller
         }
     }
     
-    //Text
+    //imagem
+    
+    public function InsertImage(Request $request, $id)
+    {
+        //$request->input('text');
+        $image = new Image;
+        $image->image = Storage::url($request->file('image')->store('public/tutorials/'.$id));
+        $image->content_id = $id;
+        $image->position = $request->input('position');
+        $image->save();
+        return redirect()->route('tutorial', $id);
+        
+        //$url = Storage::url('file.jpg');
+        //$path = $request->file('avatar')->store('avatars');
+    }
+    public function NewImage($id)
+    {
+        return view('content.tutorialNewImage', ['id'=>$id]);
+    }
+    public function DeleteImage($id)
+    {
+        $image = Image::where('id',$id)->first();
+        $id = $image->content_id;
+        $image->delete();
+        return redirect()->route('tutorial',$id);
+    }
 
+    //texto
+    
     public function EditText($id)
     {
         $text = Text::where('id',$id)->first();
@@ -102,35 +122,8 @@ class TutorialController extends Controller
         return redirect()->route('tutorial',$id);
     }
 
-    //Imagem
-
-    public function InsertImage(Request $request, $id)
-    {
-        //$request->input('text');
-        $image = new Image;
-        $image->image = Storage::url($request->file('image')->store('public/tutorials/'.$id));
-        $image->content_id = $id;
-        $image->position = $request->input('position');
-        $image->save();
-        return redirect()->route('tutorial', $id);
-        
-        //$url = Storage::url('file.jpg');
-        //$path = $request->file('avatar')->store('avatars');
-    }
-    public function NewImage($id)
-    {
-        return view('content.tutorialNewImage', ['id'=>$id]);
-    }
-    public function DeleteImage($id)
-    {
-        $image = Image::where('id',$id)->first();
-        $id = $image->content_id;
-        $image->delete();
-        return redirect()->route('tutorial',$id);
-    }
-
-    //Vídeo
-
+    //video
+    
     public function NewVideo($id)
     {
         return view('content.tutorialNewVideo',['id'=>$id]);

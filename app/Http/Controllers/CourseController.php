@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+    /*
     public function ShowCourses()
     {
         $courses = Content::where('content_type_id','course')->get();
-        return view('search.courses',['courses'=>$courses]);
-    }
+        return view('content.search.courses',['courses'=>$courses]);
+    }*/
 }

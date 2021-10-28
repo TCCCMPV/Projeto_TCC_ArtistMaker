@@ -2,10 +2,12 @@
 
 @section('content')
 <nav>
-    <a href="{{route('tutorials')}}">Tutoriais</a>
-    <a href="{{route('courses')}}">Cursos</a>
-    <a href="{{route('modules')}}">Módulos</a>
+    <a href="{{route('searchTutorial')}}">Tutoriais</a>
+    <a href="{{route('searchCourse')}}">Cursos</a>
+    <a href="{{route('searchModule')}}">Módulos</a>
 </nav>
+
+<img src="/default/UnknownContent.png">
 <!--
 <div class="container">
     <div class="row justify-content-center">

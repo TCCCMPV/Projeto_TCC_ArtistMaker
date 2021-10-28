@@ -2,69 +2,62 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*-----------------Auth---------------------------------*/
 
 Auth::routes();
+
+/*-----------------Menu---------------------------------*/
+
+Route::get('/', function () {
+    return view('menu.welcome');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
-//--------------------Tutorial-----------------------------
+/*-----------------Content---------------------------------*/
 
-Route::get('/tutorials', 'TutorialController@ShowTutorials')->name('tutorials');
+/*Search*/
 
-//tutorial
+Route::get('/search/course','SearchController@ShowCourses')->name('searchCourse');
+Route::get('/search/module','SearchController@ShowModules')->name('searchModule');
+Route::get('/search/tutorial','SearchController@Showtutorials')->name('searchTutorial');
 
-Route::get('/tutorial/{id}', 'TutorialController@ShowTutorial')->name('tutorial');
-Route::view('/tutorials/new-tutorial', 'content.newTutorial')->name('newTutorial');
-Route::post('/tutorial/create-tutorial', 'TutorialController@NewTutorial')->name('createTutorial');
-Route::get('tutorial/{id}/edit-title', 'TutorialController@EditTitle')->name('editTutorialTitle');
-Route::get('tutorial/{id}/edit-thumb','TutorialController@EditThumb')->name('editTutorialThumb');
-Route::put('tutorial/{id}/put-thumb','TutorialController@PutThumb')->name('putTutorialThumb');
-Route::put('tutorial/{id}/put-title','TutorialController@PutTitle')->name('putTutorialTitle');
+/*Course*/
 
-//imagem
+Route::get('/course/{id}','CourseController@ShowCourse')->name('course');
+Route::get('/new/course','CourseController@NewCourse')->name('newCourse');
 
-Route::post('/tutorial/{id}/new-image','TutorialController@NewImage')->name('newImage');
-Route::post('/tutorial/{id}/insert-image','TutorialController@InsertImage')->name('insertImage');
-Route::delete('/tutorial/{id}/delete-image','TutorialController@DeleteImage')->name('deleteImage');
-Route::get('tutorial/{id}/edit-image','TutorialController@EditImage')->name('editImage');
-Route::put('tutorial/{id}/put-image','TutorialController@PutImage')->name('putImage');
+/*Module*/
 
+Route::get('/module/{id}','ModuleController@ShowModule')->name('module');
+Route::get('/new/module','ModuleController@NewModule')->name('newModule');
 
-//texto
+/*Tutorial*/
 
-Route::post('/tutorial/{id}/new-text','TutorialController@NewText')->name('newText');
-Route::post('/tutorial/{id}/insert-text','TutorialController@InsertText')->name('insertText');
-Route::delete('/tutorial/{id}/delete-text','TutorialController@DeleteText')->name('deleteText');
-Route::get('/tutorial/{id}/edit-text','TutorialController@EditText')->name('editText');
+Route::get('/tutorial/{id}','TutorialController@ShowTutorial')->name('tutorial');
+Route::get('/new/tutorial','TutorialController@NewTutorial')->name('newTutorial');
+Route::post('/post/tutorial','TutorialController@PostTutorial')->name('postTutorial');
+
+Route::get('/tutorial/{id}/edit-title','TutorialController@EditTitle')->name('editTutorialTitle');
+Route::put('/tutorial/{id}/put-title','TutorialController@PutTitle')->name('putTutorialTitle');
+Route::get('/tutorial/{id}/edit-thumb','TutorialController@EditThumb')->name('editTutorialThumb');
+Route::put('/tutorial/{id}/put-thumb','TutorialController@PutThumb')->name('putTutorialThumb');
+
+Route::post('/tutorial/{id}/new-image','TutorialController@NewImage')->name('newTutorialImage');
+Route::post('/tutorial/{id}/insert-image','TutorialController@InsertImage')->name('insertTutorialImage');
+Route::delete('/tutorial/{id}/delete-image','TutorialController@DeleteImage')->name('deleteTutorialImage');
+Route::get('/tutorial/{id}/edit-image','TutorialController@EditImage')->name('editTutorialImage');
+Route::put('/tutorial/{id}/put-image','TutorialController@PutImage')->name('putTutorialImage');
+
+Route::post('/tutorial/{id}/new-text','TutorialController@NewText')->name('newTutorialText');
+Route::post('/tutorial/{id}/insert-text','TutorialController@InsertText')->name('insertTutorialText');
+Route::delete('/tutorial/{id}/delete-text','TutorialController@DeleteText')->name('deleteTutorialText');
+Route::get('/tutorial/{id}/edit-text','TutorialController@EditText')->name('editTutorialText');
 Route::put('tutorial/{id}/put-text','TutorialController@PutText')->name('putTutorialText');
 
-
-//vídeo
-
-Route::post('/tutorial/{id}/new-video','TutorialController@NewVideo')->name('newVideo');
-Route::post('/tutorial/{id}/insert-video','TutorialController@InsertVideo')->name('insertVideo');
-Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->name('deleteVideo');
-Route::view('tutorial/{id}/edit-video','content.tutorialEditVideo')->name('editVideo');
-
-
-//---------------------Módulo------------------------------
-
-Route::get('/modules', 'ModuleController@ShowModules')->name('modules');
-Route::get('/module/{id}', 'ModuleController@ShowModule')->name('module');
-
-//---------------------Curso------------------------------
-
-Route::get('/courses', 'CourseController@ShowCourses')->name('courses');
-Route::get('/course/{id}', 'CourseController@ShowCourse')->name('course');
-
-
-
-//NewTutorial
-
-
-
+Route::post('/tutorial/{id}/new-video','TutorialController@NewVideo')->name('newTutorialVideo');
+Route::post('/tutorial/{id}/insert-video','TutorialController@InsertVideo')->name('insertTutorialVideo');
+Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->name('deleteTutorialVideo');
+Route::view('tutorial/{id}/edit-video','content.tutorialEditVideo')->name('editTutorialVideo');
 
 /*
 Route::get('/gallery', 'GalleryController')->name('Gallery');

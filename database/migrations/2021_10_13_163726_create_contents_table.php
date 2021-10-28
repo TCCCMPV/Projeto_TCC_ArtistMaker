@@ -18,7 +18,7 @@ class CreateContentsTable extends Migration
             $table->longText('tags')->nullable();
             $table->string('name',100);
             $table->string('description',500)->nullable();
-            $table->string('thumbnail',500)->default('public/default/tutorial.png');
+            $table->string('thumbnail',500)->default('default/UnknownUser.png');
             $table->string('language',60)->default('pt-br');
             $table->integer('qualification_level')->nullable();
             $table->string('subcategory_id')->references('id')->on('subcategories')->nullable();

@@ -85,9 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{route('tutorials')}}">Tutoriais</a>
-                    <a href="{{route('courses')}}">Cursos</a>
-                    <a href="{{route('modules')}}">Módulos</a>
+                    <a href="{{route('searchTutorial')}}">Tutoriais</a>
+                    <a href="{{route('searchCourse')}}">Cursos</a>
+                    <a href="{{route('searchModule')}}">Módulos</a>
                 </div>
             </div>
         </div>
