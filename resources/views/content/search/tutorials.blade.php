@@ -6,7 +6,7 @@
         <div>
         <img src="{{$tutorial->thumbnail}}" width="400px"><br>
         <a href="{{route('tutorial',$tutorial->id)}}">{{$tutorial->name}}</a> |
-        <a href="{{route('tutorial',$tutorial->user_id)}}">{{$tutorial->user->nick}}</a>
+        <a href="{{route('user',$tutorial->user_id)}}">{{$tutorial->user->nick}}</a>
         <hr>
         </div>
     @endforeach

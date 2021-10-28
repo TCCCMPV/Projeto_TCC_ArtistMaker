@@ -59,6 +59,11 @@ Route::post('/tutorial/{id}/insert-video','TutorialController@InsertVideo')->nam
 Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->name('deleteTutorialVideo');
 Route::view('tutorial/{id}/edit-video','content.tutorialEditVideo')->name('editTutorialVideo');
 
+/*-----------------User---------------------------------*/
+
+Route::get('/user/{id}', 'UserController@ShowUser')->name('user');
+
+
 /*
 Route::get('/gallery', 'GalleryController')->name('Gallery');
 Route::get('/user/{id}', 'UserController')->name('User');

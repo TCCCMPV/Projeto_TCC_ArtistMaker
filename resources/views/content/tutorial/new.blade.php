@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<form method="POST" action="{{route('newTutorial')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('postTutorial')}}" enctype="multipart/form-data">
 @csrf
 <label>Nome: </label>
 <input type="text" name="name"></br>

@@ -35,7 +35,13 @@ class TutorialController extends Controller
         $tutorial = new Content;
         $tutorial->name = $request->input('name');
         $tutorial->user_id = Auth::id();
-        $tutorial->thumbnail = Storage::url($request->file('image')->store('storage/'.$tutorial->user_id.'/tutorials/thumbnails'));
+        if($request->file('thumb') == null)
+        {
+            $tutorial->thumbnail = '/default/UnknownContent.png';
+        }
+        else{
+            $tutorial->thumbnail = Storage::url($request->file('thumb')->store('storage/'.$tutorial->user_id.'/tutorials/thumbnails'));
+        }
         $tutorial->content_type_id = 'tutorial';
         $tutorial->save();
         return redirect()->route('tutorial', $tutorial->id);
