@@ -39,6 +39,7 @@ Route::post('/post/tutorial','TutorialController@PostTutorial')->name('postTutor
 
 Route::get('/tutorial/{id}/edit-title','TutorialController@EditTitle')->name('editTutorialTitle');
 Route::put('/tutorial/{id}/put-title','TutorialController@PutTitle')->name('putTutorialTitle');
+
 Route::get('/tutorial/{id}/edit-thumb','TutorialController@EditThumb')->name('editTutorialThumb');
 Route::put('/tutorial/{id}/put-thumb','TutorialController@PutThumb')->name('putTutorialThumb');
 

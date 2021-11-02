@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form action="{{route('insertText',$id)}}" method="POST">
+    <form action="{{route('insertTutorialText',$id)}}" method="POST">
         @csrf
         <label>Texto:</label>
         <textarea name="text"></textarea>

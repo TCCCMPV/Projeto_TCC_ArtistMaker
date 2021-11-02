@@ -40,7 +40,7 @@ class TutorialController extends Controller
             $tutorial->thumbnail = '/default/UnknownContent.png';
         }
         else{
-            $tutorial->thumbnail = Storage::url($request->file('thumb')->store('storage/'.$tutorial->user_id.'/tutorials/thumbnails'));
+            $tutorial->thumbnail = Storage::url($request->file('thumb')->store('public/'.$tutorial->user_id.'/tutorials/thumbnails'));
         }
         $tutorial->content_type_id = 'tutorial';
         $tutorial->save();
@@ -51,7 +51,15 @@ class TutorialController extends Controller
 
     public function EditTitle($id)
     {
-        
+        $tutorial = Content::where('id',$id)->first();
+        return view('content.tutorial.editTitle',['tutorial'=>$tutorial]);
+    }
+    public function PutTitle(Request $request, $id)
+    {
+        $tutorial = Content::where('id',$id)->first();
+        $tutorial->name = $request->input('title');
+        $tutorial->save();
+        return redirect()->route('tutorial',$tutorial->id);
     }
     public function EditThumb($id)
     {
@@ -67,7 +75,8 @@ class TutorialController extends Controller
         else
         {
             $tutorial = Content::where('id',$id)->first();
-            $tutorial->thumbnail = Storage::url($request->file('thumb')->store('public/tutorial/'));
+            $tutorial->thumbnail = Storage::url($request->file('thumb')->store('public/'.$tutorial->user_id.'/tutorials/thumbnails'));
+            $tutorial->save();
             return redirect()->route('tutorial',$id);
         }
     }
@@ -78,7 +87,8 @@ class TutorialController extends Controller
     {
         //$request->input('text');
         $image = new Image;
-        $image->image = Storage::url($request->file('image')->store('public/tutorials/'.$id));
+        $tutorial = Content::where('id',$id)->first();
+        $image->image = Storage::url($request->file('image')->store('public/'.Auth::id().'/tutorials/'.$tutorial->id));
         $image->content_id = $id;
         $image->position = $request->input('position');
         $image->save();
@@ -89,7 +99,27 @@ class TutorialController extends Controller
     }
     public function NewImage($id)
     {
-        return view('content.tutorialNewImage', ['id'=>$id]);
+        return view('content.tutorial.newImage', ['id'=>$id]);
+    }
+    public function EditImage($id)
+    {
+        $image = Image::where('id',$id)->first();
+        return view('content.tutorial.editImage',['image'=>$image]);
+    }
+    public function PutImage(Request $request, $id)
+    {
+        $image = Image::where('id', $id)->first();
+
+        if($request->file('image') != null)//possui arquivo
+        {
+            $image->image = Storage::url($request->file('image')->store('public/'.Auth::id().'/tutorials/'.$image->content_id));
+        }
+        if($request->input('position') != null)
+        {
+            $image->position = $request->input('position');
+        }
+        $image->save();
+        return redirect()->route('tutorial',$image->content_id);
     }
     public function DeleteImage($id)
     {
@@ -104,11 +134,18 @@ class TutorialController extends Controller
     public function EditText($id)
     {
         $text = Text::where('id',$id)->first();
-        return view('content.tutorialEditText',['text'=>$text]);
+        return view('content.tutorial.EditText',['text'=>$text]);
     }
     public function NewText($id)
     {
-        return view('content.tutorialNewText',['id'=>$id]);
+        return view('content.tutorial.newText',['id'=>$id]);
+    }
+    public function PutText(Request $request, $id)
+    {
+        $text = Text::where('id',$id)->first();
+        $text->text = $request->input('text');
+        $text->save();
+        return redirect()->route('tutorial',$text->content_id);
     }
     public function InsertText(Request $request, $id)
     {
@@ -132,7 +169,7 @@ class TutorialController extends Controller
     
     public function NewVideo($id)
     {
-        return view('content.tutorialNewVideo',['id'=>$id]);
+        return view('content.tutorial.NewVideo',['id'=>$id]);
     }
     public function InsertVideo(Request $request, $id)
     {

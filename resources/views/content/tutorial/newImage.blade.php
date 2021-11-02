@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form action="{{route('insertImage',$id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('insertTutorialImage',$id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="file" name="image"><br>
         <label>Posição</label>

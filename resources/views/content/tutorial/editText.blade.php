@@ -3,7 +3,8 @@
     <form action="{{route('putTutorialText',$text->id)}}" method="post">
         @csrf
         @method('PUT')
-        <input type="text" name="text" >
+        <label>Texto: </label><br>
+        <textarea name="text">{{$text->text}}</textarea><br>
         <input type="submit" name="enviar">
     </form>
 @endsection
