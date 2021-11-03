@@ -58,7 +58,8 @@ Route::put('tutorial/{id}/put-text','TutorialController@PutText')->name('putTuto
 Route::post('/tutorial/{id}/new-video','TutorialController@NewVideo')->name('newTutorialVideo');
 Route::post('/tutorial/{id}/insert-video','TutorialController@InsertVideo')->name('insertTutorialVideo');
 Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->name('deleteTutorialVideo');
-Route::view('tutorial/{id}/edit-video','content.tutorialEditVideo')->name('editTutorialVideo');
+Route::get('tutorial/{id}/edit-video','TutorialController@EditVideo')->name('editTutorialVideo');
+Route::put('tutorial/{id}/put-video','TutorialController@PutVideo')->name('putTutorialVideo');
 
 /*-----------------User---------------------------------*/
 

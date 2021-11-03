@@ -143,7 +143,14 @@ class TutorialController extends Controller
     public function PutText(Request $request, $id)
     {
         $text = Text::where('id',$id)->first();
-        $text->text = $request->input('text');
+        if($request->input('text')!= null)//texto nulo
+        {
+            $text->text = $request->input('text');
+        }
+        if($request->input('position')!= null)//position nulo
+        {
+            $text->position = $request->input('position');
+        }
         $text->save();
         return redirect()->route('tutorial',$text->content_id);
     }
@@ -179,6 +186,25 @@ class TutorialController extends Controller
         $video->content_id = $id;
         $video->save();
         return redirect()->route('tutorial',$id);
+    }
+    public function EditVideo($id)
+    {
+        $video = Video::where('id',$id)->first();
+        return view('content.tutorial.editVideo',['video'=>$video]);
+    }
+    public function PutVideo(Request $request, $id)
+    {
+        $video=Video::where('id',$id)->first();
+
+        if($request->file('video')!= null)//video não nulo
+        {
+            $video->video = ($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$video->content_id));
+        }
+        if($request->input('position') != null)
+        {
+
+        }
+        return redirect()->route('tutorial',$video->content_id);
     }
     public function DeleteVideo($id)
     {
