@@ -58,6 +58,9 @@
         <hr>
     @endforeach
     @if (Auth::id() == $tutorial->user_id)
+        <a href="{{route('newTutorialText',$tutorial->id)}}">Novo texto</a><br>
+        <a href="{{route('newTutorialImage',$tutorial->id)}}">Nova Imagem</a><br>
+        <a href="{{route('newTutorialVideo',$tutorial->id)}}">Novo Vídeo</a><br>
         <form method="POST" action="{{ route('newTutorialText', $tutorial->id) }}">
             @csrf
             <input type="submit" value="Novo texto">

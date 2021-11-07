@@ -43,19 +43,19 @@ Route::put('/tutorial/{id}/put-title','TutorialController@PutTitle')->name('putT
 Route::get('/tutorial/{id}/edit-thumb','TutorialController@EditThumb')->name('editTutorialThumb');
 Route::put('/tutorial/{id}/put-thumb','TutorialController@PutThumb')->name('putTutorialThumb');
 
-Route::post('/tutorial/{id}/new-image','TutorialController@NewImage')->name('newTutorialImage');
+Route::get('/tutorial/{id}/new-image','TutorialController@NewImage')->name('newTutorialImage');
 Route::post('/tutorial/{id}/insert-image','TutorialController@InsertImage')->name('insertTutorialImage');
 Route::delete('/tutorial/{id}/delete-image','TutorialController@DeleteImage')->name('deleteTutorialImage');
 Route::get('/tutorial/{id}/edit-image','TutorialController@EditImage')->name('editTutorialImage');
 Route::put('/tutorial/{id}/put-image','TutorialController@PutImage')->name('putTutorialImage');
 
-Route::post('/tutorial/{id}/new-text','TutorialController@NewText')->name('newTutorialText');
+Route::get('/tutorial/{id}/new-text','TutorialController@NewText')->name('newTutorialText');
 Route::post('/tutorial/{id}/insert-text','TutorialController@InsertText')->name('insertTutorialText');
 Route::delete('/tutorial/{id}/delete-text','TutorialController@DeleteText')->name('deleteTutorialText');
 Route::get('/tutorial/{id}/edit-text','TutorialController@EditText')->name('editTutorialText');
 Route::put('tutorial/{id}/put-text','TutorialController@PutText')->name('putTutorialText');
 
-Route::post('/tutorial/{id}/new-video','TutorialController@NewVideo')->name('newTutorialVideo');
+Route::get('/tutorial/{id}/new-video','TutorialController@NewVideo')->name('newTutorialVideo');
 Route::post('/tutorial/{id}/insert-video','TutorialController@InsertVideo')->name('insertTutorialVideo');
 Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->name('deleteTutorialVideo');
 Route::get('tutorial/{id}/edit-video','TutorialController@EditVideo')->name('editTutorialVideo');

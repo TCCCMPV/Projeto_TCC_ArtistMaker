@@ -4,7 +4,7 @@
         @csrf
         @method('PUT')
         <label>Video: </label><input name="video" type="file"><br>
-        <label>Posição: </label><input name="position" type="number"><br>
+        <label>Posição: </label><input name="position" type="number" value="{{$video->position}}"><br>
         <input type="submit">
     </form>
 @endsection

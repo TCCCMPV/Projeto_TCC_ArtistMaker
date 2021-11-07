@@ -156,13 +156,26 @@ class TutorialController extends Controller
     }
     public function InsertText(Request $request, $id)
     {
-        //$request->input('text');
-        $text = new Text;
-        $text->text = $request->input('text');
-        $text->content_id = $id;
-        $text->position = $request->input('position');
-        $text->save();
-        return redirect()->route('tutorial', $id);
+        if($request->input('position') == null ||  $request->input('text') == null)
+        {
+            $data = array(
+                'type'=>'2buttons',
+                'text'=>'O texto precisa possuir uma posição e conteúdo',
+                'button 1'=>'Retornar',
+                'button 1 href'=>route('newTutorialText',$id),
+                'button 2'=>'Voltar ao tutorial',
+                'button 2 href'=>route('tutorial',$id)
+            );
+            return view('menu.warning',['data'=>$data]);
+        }
+        else{
+            $text = new Text;
+            $text->text = $request->input('text');
+            $text->content_id = $id;
+            $text->position = $request->input('position');
+            $text->save();
+            return redirect()->route('tutorial', $id);
+        }
     }
     public function DeleteText($id)
     {
@@ -198,11 +211,11 @@ class TutorialController extends Controller
 
         if($request->file('video')!= null)//video não nulo
         {
-            $video->video = ($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$video->content_id));
+            $video->video = Storage::url($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$video->content_id));
         }
         if($request->input('position') != null)
         {
-
+            $video->position = $request->input('position');
         }
         return redirect()->route('tutorial',$video->content_id);
     }
