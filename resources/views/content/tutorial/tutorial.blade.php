@@ -1,11 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <h1>{{ $tutorial->name }}</h1>
-    <a href="{{ route('editTutorialTitle', $tutorial->id) }}">Editar título</a>
+    @if (Auth::id() == $tutorial->user_id)
+        <a href="{{ route('editTutorialTitle', $tutorial->id) }}">Editar título</a>
+    @endif
     <p>Criado por:{{ $tutorial->user->nick }}</p>
     <h2>Thumb:</h2>
     <img src="{{ $tutorial->thumbnail }}" width="200px">
-    <a href="{{ route('editTutorialThumb', $tutorial->id) }}">Editar thumb</a>
+    @if (Auth::id() == $tutorial->user_id)
+        <a href="{{ route('editTutorialThumb', $tutorial->id) }}">Editar thumb</a>
+    @endif
     <hr>
 
 
@@ -58,9 +62,9 @@
         <hr>
     @endforeach
     @if (Auth::id() == $tutorial->user_id)
-        <a href="{{route('newTutorialText',$tutorial->id)}}">Novo texto</a><br>
-        <a href="{{route('newTutorialImage',$tutorial->id)}}">Nova Imagem</a><br>
-        <a href="{{route('newTutorialVideo',$tutorial->id)}}">Novo Vídeo</a><br>
+        <a href="{{ route('newTutorialText', $tutorial->id) }}">Novo texto</a><br>
+        <a href="{{ route('newTutorialImage', $tutorial->id) }}">Nova Imagem</a><br>
+        <a href="{{ route('newTutorialVideo', $tutorial->id) }}">Novo Vídeo</a><br>
         <form method="POST" action="{{ route('newTutorialText', $tutorial->id) }}">
             @csrf
             <input type="submit" value="Novo texto">
