@@ -36,6 +36,7 @@ Route::get('/new/module','ModuleController@NewModule')->name('newModule');
 Route::get('/tutorial/{id}','TutorialController@ShowTutorial')->name('tutorial');
 Route::get('/new/tutorial','TutorialController@NewTutorial')->name('newTutorial');
 Route::post('/post/tutorial','TutorialController@PostTutorial')->name('postTutorial');
+Route::delete('/tutorial/{id}/delete','TutorialController@DeleteTutorial')->name('deleteTutorial');
 
 Route::get('/tutorial/{id}/edit-title','TutorialController@EditTitle')->name('editTutorialTitle');
 Route::put('/tutorial/{id}/put-title','TutorialController@PutTitle')->name('putTutorialTitle');

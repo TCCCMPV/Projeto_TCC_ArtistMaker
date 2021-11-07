@@ -3,8 +3,13 @@
     <h1>{{ $tutorial->name }}</h1>
     @if (Auth::id() == $tutorial->user_id)
         <a href="{{ route('editTutorialTitle', $tutorial->id) }}">Editar título</a>
+        <form method="POST" action="{{route('deleteTutorial',$tutorial->id)}}">
+            @csrf
+            @method('DELETE')
+            <input type='submit' value="Deletar tutorial">
+        </form>
     @endif
-    <p>Criado por:{{ $tutorial->user->nick }}</p>
+    <p>Criado por:<a href="{{route('user',$tutorial->user_id)}}">{{ $tutorial->user->nick }}</a></p>
     <h2>Thumb:</h2>
     <img src="{{ $tutorial->thumbnail }}" width="200px">
     @if (Auth::id() == $tutorial->user_id)
@@ -65,17 +70,5 @@
         <a href="{{ route('newTutorialText', $tutorial->id) }}">Novo texto</a><br>
         <a href="{{ route('newTutorialImage', $tutorial->id) }}">Nova Imagem</a><br>
         <a href="{{ route('newTutorialVideo', $tutorial->id) }}">Novo Vídeo</a><br>
-        <form method="POST" action="{{ route('newTutorialText', $tutorial->id) }}">
-            @csrf
-            <input type="submit" value="Novo texto">
-        </form>
-        <form method="POST" action="{{ route('newTutorialImage', $tutorial->id) }}">
-            @csrf
-            <input type="submit" value="nova imagem">
-        </form>
-        <form method="POST" action="{{ route('newTutorialVideo', $tutorial->id) }}">
-            @csrf
-            <input type="submit" value="novo vídeo">
-        </form>
     @endif
 @endsection

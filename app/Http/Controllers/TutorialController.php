@@ -18,7 +18,7 @@ class TutorialController extends Controller
     public function ShowTutorial($id)
     {
         $tutorial = Content::where('id',$id)->first();
-        $images = Content::where('id',$id)->first()->images;
+        $images = Content::where('id',$id)->first()->images()->get();
         $texts = Content::where('id',$id)->first()->texts()->get();
         $videos = Content::where('id',$id)->first()->videos()->get();
         $mix = $images->merge($texts);
@@ -45,6 +45,45 @@ class TutorialController extends Controller
         $tutorial->content_type_id = 'tutorial';
         $tutorial->save();
         return redirect()->route('tutorial', $tutorial->id);
+    }
+    public function DeleteTutorial($id)
+    {
+        $tutorial = Content::where('id',$id)->first();
+        $images = Image::where('content_id',$id)->get();
+        $videos = Video::where('content_id',$id)->get();
+        $texts = Text::where('content_id',$id)->get();
+        if($videos != null)
+        {
+            foreach($videos as $video)
+            {
+                Storage::delete(str_Replace('/storage','public',$video->video));
+                $video->delete();
+            } 
+        }
+        if($texts != null)
+        {
+            foreach($texts as $text)
+            {
+                $text->delete();
+            }
+        }
+        if($images != null)
+        {
+            foreach($images as $image)
+            {
+                Storage::delete(str_Replace('/storage','public',$image->image));
+                $image->delete();
+            }
+        }
+        $tutorial->delete();
+        $data = array(
+            'type'=>'1button',
+            'text'=>'Tutorial deletado',
+            'button 1'=>'Ir ao perfil',
+            'button 1 href'=>route('user',Auth::id())
+        );
+        return view('menu.warning',['data'=>$data]);
+        
     }
 
     //edits
@@ -75,6 +114,7 @@ class TutorialController extends Controller
         else
         {
             $tutorial = Content::where('id',$id)->first();
+            Storage::delete(str_replace('/storage','public',$tutorial->thumbnail));
             $tutorial->thumbnail = Storage::url($request->file('thumb')->store('public/'.$tutorial->user_id.'/tutorials/thumbnails'));
             $tutorial->save();
             return redirect()->route('tutorial',$id);
@@ -112,6 +152,7 @@ class TutorialController extends Controller
 
         if($request->file('image') != null)//possui arquivo
         {
+            Storage::delete(str_Replace('/storage','public',$image->image));
             $image->image = Storage::url($request->file('image')->store('public/'.Auth::id().'/tutorials/'.$image->content_id));
         }
         if($request->input('position') != null)
@@ -125,6 +166,7 @@ class TutorialController extends Controller
     {
         $image = Image::where('id',$id)->first();
         $id = $image->content_id;
+        Storage::delete(str_Replace('/storage','public',$image->image));
         $image->delete();
         return redirect()->route('tutorial',$id);
     }
@@ -194,7 +236,7 @@ class TutorialController extends Controller
     public function InsertVideo(Request $request, $id)
     {
         $video = new Video;
-        $video->video = Storage::url($request->file('video')->store('public/tutorials/'.$id));
+        $video->video = Storage::url($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$id));
         $video->position = $request->input('position');
         $video->content_id = $id;
         $video->save();
@@ -208,14 +250,18 @@ class TutorialController extends Controller
     public function PutVideo(Request $request, $id)
     {
         $video=Video::where('id',$id)->first();
-
-        if($request->file('video')!= null)//video não nulo
+        
+        if($request->file('video') != null)//video não nulo
         {
-            $video->video = Storage::url($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$video->content_id));
+           // $video->video = Storage::url($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$video->content_id));
+           Storage::delete(str_replace('/storage','public',$video->video));
+           $video->video = Storage::url($request->file('video')->store('public/'.Auth::id().'/tutorials/'.$video->content_id));
+           $video->save();
         }
         if($request->input('position') != null)
         {
             $video->position = $request->input('position');
+            $video->save();
         }
         return redirect()->route('tutorial',$video->content_id);
     }
@@ -223,6 +269,7 @@ class TutorialController extends Controller
     {
         $video = Video::where('id',$id)->first();
         $id = $video->content_id;
+        Storage::delete(str_replace('/storage','public',$video->video));
         $video->delete();
         return redirect()->route('tutorial',$id);
     }

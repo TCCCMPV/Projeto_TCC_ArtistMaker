@@ -4,4 +4,8 @@
         <p>{{$data['text']}}</p><br>
         <p><a href="{{$data['button 1 href']}}">{{$data['button 1']}}</a> <a href="{{$data['button 2 href']}}">{{$data['button 2']}}</a></p>
     @endif
+    @if ($data['type']=='1button')
+        <p>{{$data['text']}}</p><br>
+        <p><a href="{{$data['button 1 href']}}">{{$data['button 1']}}</a></p>
+    @endif
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form method="post" action="{{route('putTutorialVideo',$video->id)}}">
+    <form method="post" action="{{route('putTutorialVideo',$video->id)}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <label>Video: </label><input name="video" type="file"><br>
