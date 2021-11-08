@@ -71,4 +71,11 @@
         <a href="{{ route('newTutorialImage', $tutorial->id) }}">Nova Imagem</a><br>
         <a href="{{ route('newTutorialVideo', $tutorial->id) }}">Novo Vídeo</a><br>
     @endif
+    {{-- seção de comentários--}}
+    <h1>Comentários:</h1>
+    <form method="post" action="{{route('insertTutorialComment',$tutorial->id)}}">
+        @csrf
+        <label>Novo Comentário:</label><textarea name="text"></textarea><input type="submit" value="Publicar">
+        </form>
 @endsection
+            {{--foto, nick(link), data/modificação, texto, like e deslike --}}

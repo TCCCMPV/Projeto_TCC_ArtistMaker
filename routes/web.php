@@ -62,6 +62,11 @@ Route::delete('/tutorial/{id}/delete-video','TutorialController@DeleteVideo')->n
 Route::get('tutorial/{id}/edit-video','TutorialController@EditVideo')->name('editTutorialVideo');
 Route::put('tutorial/{id}/put-video','TutorialController@PutVideo')->name('putTutorialVideo');
 
+Route::post('/tutorial/{id}/new-comment','CommentController@InsertComment')->name('insertTutorialComment');
+Route::get('/tutorial/{id}/edit-comment','CommentController@EditComment')->name('editTutorialComment');
+Route::put('/tutorial/{id}/put-comment','CommentController@PutComment')->name('putTutorialComment');
+Route::delete('/tutorial/{id}/delete-comment','CommentController@DeleteComment')->name('DeleteTutorialComment');
+
 /*-----------------User---------------------------------*/
 
 Route::get('/user/{id}', 'UserController@ShowUser')->name('user');

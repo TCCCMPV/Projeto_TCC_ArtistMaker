@@ -6,6 +6,7 @@ use App\Content;
 use App\Image;
 use App\Video;
 use App\Text;
+use App\Comment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ class TutorialController extends Controller
 
     public function ShowTutorial($id)
     {
+        //exibição do tutorial
         $tutorial = Content::where('id',$id)->first();
         $images = Content::where('id',$id)->first()->images()->get();
         $texts = Content::where('id',$id)->first()->texts()->get();
@@ -24,7 +26,11 @@ class TutorialController extends Controller
         $mix = $images->merge($texts);
         $mix = $mix->merge($videos);
         $mix = $mix->sortBy('position');
-        return view('content.tutorial.tutorial',['tutorial'=>$tutorial,'mix'=>$mix]);
+
+        //comentários
+        $comments = Comment::where('content_id',$tutorial->id)->get();
+
+        return view('content.tutorial.tutorial',['tutorial'=>$tutorial,'mix'=>$mix,'comments'=>$comments]);
     }
     public function NewTutorial()
     {
