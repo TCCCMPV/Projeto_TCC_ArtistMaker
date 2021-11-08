@@ -3,13 +3,13 @@
     <h1>{{ $tutorial->name }}</h1>
     @if (Auth::id() == $tutorial->user_id)
         <a href="{{ route('editTutorialTitle', $tutorial->id) }}">Editar título</a>
-        <form method="POST" action="{{route('deleteTutorial',$tutorial->id)}}">
+        <form method="POST" action="{{ route('deleteTutorial', $tutorial->id) }}">
             @csrf
             @method('DELETE')
             <input type='submit' value="Deletar tutorial">
         </form>
     @endif
-    <p>Criado por:<a href="{{route('user',$tutorial->user_id)}}">{{ $tutorial->user->nick }}</a></p>
+    <p>Criado por:<a href="{{ route('user', $tutorial->user_id) }}">{{ $tutorial->user->nick }}</a></p>
     <h2>Thumb:</h2>
     <img src="{{ $tutorial->thumbnail }}" width="200px">
     @if (Auth::id() == $tutorial->user_id)
@@ -71,11 +71,32 @@
         <a href="{{ route('newTutorialImage', $tutorial->id) }}">Nova Imagem</a><br>
         <a href="{{ route('newTutorialVideo', $tutorial->id) }}">Novo Vídeo</a><br>
     @endif
-    {{-- seção de comentários--}}
+    {{-- seção de comentários --}}
     <h1>Comentários:</h1>
-    <form method="post" action="{{route('insertTutorialComment',$tutorial->id)}}">
+    <form method="post" action="{{ route('insertTutorialComment', $tutorial->id) }}">
         @csrf
         <label>Novo Comentário:</label><textarea name="text"></textarea><input type="submit" value="Publicar">
-        </form>
+    </form>
+    @foreach ($comments as $comment)
+        <table>
+            <tr>
+                <td><img src="{{ $comment->user->picture }}" width="100"></td>
+                <td>{{ $comment->user->nick }}</td>
+                <td>{{ $comment->created_at->format('d/m/y - H:i') }}</td>
+                @if ($comment->user_id == Auth::id())
+                    <td><a href="{{ route('editTutorialComment', $comment->id) }}">Editar</a></td>
+                    <td>
+                        <form method="post" action="{{ route('DeleteTutorialComment', $comment->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Deletar">
+                        </form>
+                    </td>
+                @endif
+            </tr>
+        </table>
+        <p>{{ $comment->comment }}</p>
+        <hr>
+    @endforeach
 @endsection
-            {{--foto, nick(link), data/modificação, texto, like e deslike --}}
+{{-- foto, nick(link), data/modificação, texto, like e deslike --}}
