@@ -1,7 +1,9 @@
 @extends('layouts.app')
     @section('content')
         <h1>Tutoriais</h1>
+        @auth
         <a href="{{route('newTutorial')}}">Criar novo tutorial</a>
+        @endauth
         @foreach ($tutorials as $tutorial)
         <div>
         <img src="{{$tutorial->thumbnail}}" width="400px"><br>
