@@ -31,6 +31,11 @@ Route::get('/new/course','CourseController@NewCourse')->name('newCourse');
 Route::get('/module/{id}','ModuleController@ShowModule')->name('module');
 Route::get('/new/module','ModuleController@NewModule')->name('newModule');
 
+Route::post('/module/{id}/new-comment','CommentController@InsertComment')->name('insertModuleComment');
+Route::get('/module/{id}/edit-comment','CommentController@EditComment')->name('editModuleComment');
+Route::put('/module/{id}/put-comment','CommentController@PutComment')->name('putModuleComment');
+Route::delete('/module/{id}/delete-comment','CommentController@DeleteComment')->name('DeleteModuleComment');
+
 /*Tutorial*/
 
 Route::get('/tutorial/{id}','TutorialController@ShowTutorial')->name('tutorial');
