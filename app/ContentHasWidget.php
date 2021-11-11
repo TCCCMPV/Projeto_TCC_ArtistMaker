@@ -9,4 +9,8 @@ class ContentHasWidget extends Model
     protected $fillable = [
         'widget_id','content_id','content',
     ];
+    public function widget()
+    {
+        return $this->belongsTo('App\Widget');
+    }
 }

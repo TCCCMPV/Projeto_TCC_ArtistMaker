@@ -4,7 +4,12 @@
     <img src="{{ $module->thumbnail }}">
     <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a></p>
     <p>{{ $module->description }}</p>
-    <hr>
+    <hr>{{--Widgets--}}
+    @foreach ($contentHasWidgets as $contentHasWidget)
+     @php
+     @endphp
+     {!! Str::replaceArray('$text', ['oi','olá mundo'], $contentHasWidget->widget->code)!!}
+    @endforeach
     <hr>
     {{-- seção de comentários --}}
     <h1>Comentários:</h1>
