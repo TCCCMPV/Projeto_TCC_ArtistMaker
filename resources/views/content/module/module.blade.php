@@ -8,7 +8,9 @@
     @foreach ($contentHasWidgets as $contentHasWidget)
      @php
      @endphp
-     {!! Str::replaceArray('$text', ['oi','olá mundo'], $contentHasWidget->widget->code)!!}
+     {!!
+     str_replace(['{$text1}','{$text2}','{'$text3'}], ['oi','olá mundo'], $contentHasWidget->widget->code)
+     !!}
     @endforeach
     <hr>
     {{-- seção de comentários --}}

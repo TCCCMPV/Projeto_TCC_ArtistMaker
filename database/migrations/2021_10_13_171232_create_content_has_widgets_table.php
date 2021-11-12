@@ -17,6 +17,15 @@ class CreateContentHasWidgetsTable extends Migration
             $table->id();
             $table->foreignId('widget_id');
             $table->foreignId('content_id');
+            $table->string('text1')->nullable();
+            $table->string('text2')->nullable();
+            $table->string('text3')->nullable();
+            $table->string('alt1')->nullable();
+            $table->string('alt2')->nullable();
+            $table->string('alt3')->nullable();
+            $table->string('src1')->nullable();
+            $table->string('src2')->nullable();
+            $table->string('src3')->nullable();
             $table->longText('content');
         });
     }

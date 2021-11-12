@@ -16,7 +16,7 @@ class WidgetSeeder extends Seeder
             'code' => '<div>
             <!--Seção-->
             <h1>
-                {{$text}}
+                {$text1}
             </h1>
         </div>',
         ]);
@@ -24,65 +24,65 @@ class WidgetSeeder extends Seeder
             'name' => 'title',
             'code' => '<div>
             <!--Título-->
-            <h3>{{$text}}</h3>
+            <h3>{$text1}</h3>
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'image+desc+subtitle',
             'code' => '<div>
             <!--Imagem(alt)+descrição+subtítulo-->
-            <h5>{{$text}}</h5>
-            <img alt="{{$alt}}" src="{{$src}}">
-            <P>{{$text2}}</P>
+            <h5>{$text1}</h5>
+            <img alt="{$alt1}" src="{$src1}">
+            <P>{$text2}</P>
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'image+desc',
             'code' => ' <div>
             <!--Imagem(alt)+descrição-->
-            <img alt="{{$alt}}" src="{{$src}}">
-            <P>{{$text}}</P>
+            <img alt="{$alt2}" src="{$src1}">
+            <P>{$text1}</P>
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'image+subtitle',
             'code' => '  <div>
             <!--Imagem(alt)+subtítulo-->
-            <h5>{{$text}}</h5>
-            <img alt="{{$alt}}" src="{{$src}}">
+            <h5>{$text1}</h5>
+            <img alt="{$alt1}" src="{$src1}">
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'image',
             'code' => '<div>
             <!--Imagem(alt)-->
-            <img alt="{{$alt}}" src="{{$src}}">
+            <img alt="{$alt1}" src="{$src1}">
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'text+subtitle',
             'code' => '<div>
             <!--Texto+subtítulo-->
-            <h5>{{$text}}</h5>
+            <h5>{$text1}</h5>
             <p>{{$text2}}</p>
-        </div>0',
+        </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'text',
             'code' => '<div>
             <!--Texto-->
-            <p>{{$text}}</p>
+            <p>{$text1}</p>
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'video+desc+subtitle',
             'code' => ' <div>
             <!--Video+descrição+subtítulo-->
-            <h5>{{$text}}</h5>
+            <h5>{$text1}</h5>
             <video width="320" controls>
-                <source src="{{$src}}" type="video/mp4">
+                <source src="{$src1}" type="video/mp4">
               </video>
-            <p>{{$text2}}</p>
+            <p>{$text2}</p>
         </div>',
         ]);
         DB::table('widgets')->insert([
@@ -90,18 +90,18 @@ class WidgetSeeder extends Seeder
             'code' => '<div>
             <!--Video+descrição-->
             <video width="320" controls>
-                <source src="{{$src}}" type="video/mp4">
+                <source src="{$src1}" type="video/mp4">
               </video>
-            <p>{{$text}}</p>
+            <p>{$text1}</p>
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'video+subtitle',
             'code' => '<div>
             <!--Video+subtítulo-->
-            <h5>{{$text}}</h5>
+            <h5>{$text1}</h5>
             <video width="320" controls>
-                <source src="{{$src}}" type="video/mp4">
+                <source src="{$src1}" type="video/mp4">
               </video>
         </div>',
         ]);
@@ -110,7 +110,7 @@ class WidgetSeeder extends Seeder
             'code' => '<div>
             <!--Video-->
             <video width="320" controls>
-                <source src="{{$src}}" type="video/mp4">
+                <source src="{$src1}" type="video/mp4">
               </video>
         </div>',
         ]);
@@ -119,11 +119,11 @@ class WidgetSeeder extends Seeder
             'code' => '<div>
             <!--Áudio+Descrição+subtítulo-->
     
-            <h5>{{$text}}</h5>
+            <h5>{$text1}</h5>
             <audio controls>
-                <source src="{{$src}}" type="audio/mpeg">
+                <source src="{$src1}" type="audio/mpeg">
               </audio>
-            <p>{{$text2}}</p>
+            <p>{$text2}</p>
         </div>',
         ]);
         DB::table('widgets')->insert([
@@ -131,18 +131,18 @@ class WidgetSeeder extends Seeder
             'code' => '<div>
             <!--Áudio+Descrição-->
             <audio controls>
-                    <source src="{{$src}}" type="audio/mpeg">
+                    <source src="{$src1}" type="audio/mpeg">
                   </audio>
-            <p>{{$text}}</p>
+            <p>{$text1}</p>
         </div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'audio+subtitle',
             'code' => ' <div>
             <!--áudio+subtítulo-->
-            <h5>{{$text}}</h5>
+            <h5>{$text1}</h5>
             <audio controls>
-                <source src="{{$src}}" type="audio/mpeg">
+                <source src="{$src1}" type="audio/mpeg">
               </audio>
         </div>',
         ]);
@@ -151,7 +151,7 @@ class WidgetSeeder extends Seeder
             'code' => ' <div>
             <!--áudio-->
             <audio controls>
-                <source src="{{$src}}" type="audio/mpeg">
+                <source src="{$src1}" type="audio/mpeg">
               </audio>
         </div>',
         ]);
