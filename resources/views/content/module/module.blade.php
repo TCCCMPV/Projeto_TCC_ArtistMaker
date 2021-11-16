@@ -1,16 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
     <h1>{{ $module->name }}</h1>
     <img src="{{ $module->thumbnail }}">
     <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a></p>
     <p>{{ $module->description }}</p>
     <hr>{{--Widgets--}}
     @foreach ($contentHasWidgets as $contentHasWidget)
-     @php
-     @endphp
-     {!!
-     str_replace(['{$text1}','{$text2}','{'$text3'}], ['oi','olá mundo'], $contentHasWidget->widget->code)
-     !!}
+     {!!str_replace(['{$text1}','{$text2}','{$text3}','{$src1}','{$src2}','{$src3}','{$alt1}','{$alt2}','{$alt3}'], [$contentHasWidget->text1,$contentHasWidget->text2,$contentHasWidget->text3,$contentHasWidget->src1,$contentHasWidget->src2,$contentHasWidget->src3,$contentHasWidget->alt1,$contentHasWidget->alt2,$contentHasWidget->alt3], $contentHasWidget->widget->code)!!}
+     <p>[{{$contentHasWidget->position}}]</p>
+     <hr>
     @endforeach
     <hr>
     {{-- seção de comentários --}}

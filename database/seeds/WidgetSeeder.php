@@ -14,8 +14,7 @@ class WidgetSeeder extends Seeder
         DB::table('widgets')->insert([
             'name' => 'section',
             'code' => '<div>
-            <!--Seção-->
-            <h1>
+            <!--Seção--><h1>
                 {$text1}
             </h1>
         </div>',
@@ -62,10 +61,7 @@ class WidgetSeeder extends Seeder
         DB::table('widgets')->insert([
             'name' => 'text+subtitle',
             'code' => '<div>
-            <!--Texto+subtítulo-->
-            <h5>{$text1}</h5>
-            <p>{{$text2}}</p>
-        </div>',
+            <!--Texto+subtítulo--><h5>{$text1}</h5><p>{$text2}</p></div>',
         ]);
         DB::table('widgets')->insert([
             'name' => 'text',
