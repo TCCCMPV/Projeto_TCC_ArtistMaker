@@ -29,7 +29,9 @@ Route::get('/new/course','CourseController@NewCourse')->name('newCourse');
 /*Module*/
 
 Route::get('/module/{id}','ModuleController@ShowModule')->name('module');
-Route::get('/new/module','ModuleController@NewModule')->name('newModule');
+Route::get('/new/module','ModuleController@NewModule1')->name('newModule1');
+Route::post('/new2/module','ModuleController@NewModule2')->name('newModule2');
+route::post('/post/module','ModuleController@PostModule')->name('postModule');
 
 Route::post('/module/{id}/new-comment','CommentController@InsertComment')->name('insertModuleComment');
 Route::get('/module/{id}/edit-comment','CommentController@EditComment')->name('editModuleComment');
