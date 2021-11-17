@@ -19,7 +19,7 @@ class TutorialController extends Controller
     public function ShowTutorial($id)
     {
         //exibição do tutorial
-        $tutorial = Content::where('id',$id)->first();
+        $tutorial = Content::where('id',$id)->where('content_type_id','tutorial')->first();
         $images = Content::where('id',$id)->first()->images()->get();
         $texts = Content::where('id',$id)->first()->texts()->get();
         $videos = Content::where('id',$id)->first()->videos()->get();

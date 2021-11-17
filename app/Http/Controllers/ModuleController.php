@@ -11,7 +11,7 @@ class ModuleController extends Controller
 { 
     public function ShowModule($id)
     {
-        $module = Content::where('id',$id)->first();
+        $module = Content::where('id',$id)->where('content_type_id','module')->first();
         $comments = Comment::where('content_id',$id)->get();
         $contentHasWidgets = ContentHasWidget::where('content_id',$id)->get();
         return view('content.module.module',['module'=>$module,'comments'=>$comments,'contentHasWidgets'=>$contentHasWidgets]);
