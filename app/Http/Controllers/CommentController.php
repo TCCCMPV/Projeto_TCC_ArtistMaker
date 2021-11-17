@@ -16,6 +16,16 @@ class CommentController extends Controller
         $comment->content_id = $id;
         $comment->comment = $request->input('text');
         $comment->save();
-        return redirect()->route('tutorial',$id);
+
+        $content = Content::where('id',$id)->first();
+
+        if($content->content_type_id == 'tutorial')
+        {
+            return redirect()->route('tutorial',$id);
+        }
+        else if($content->content_type_id == 'module')
+        {
+            return redirect()->route('module',$id);
+        }
     }
 }

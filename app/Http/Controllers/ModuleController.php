@@ -35,7 +35,7 @@ class ModuleController extends Controller
         $module->user_id = Auth::id();
         if($request->file('thumb') != null)
         {
-            $module->thumbnail = Storage::url($request->file('thumb')->store('/'.auth::id().'modules/thumbnails'));
+            $module->thumbnail = Storage::url($request->file('thumb')->store('public/'.auth::id().'modules/thumbnails'));
         }
         else
         {
