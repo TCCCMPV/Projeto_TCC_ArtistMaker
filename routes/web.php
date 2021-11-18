@@ -38,6 +38,9 @@ Route::get('/module/{id}/edit-comment','CommentController@EditComment')->name('e
 Route::put('/module/{id}/put-comment','CommentController@PutComment')->name('putModuleComment');
 Route::delete('/module/{id}/delete-comment','CommentController@DeleteComment')->name('DeleteModuleComment');
 
+Route::get('/module/{id}/new-widget1','ModuleController@NewWidget1')->name('newModuleWidget1');
+Route::post('/module/{id}/new-widget2','ModuleController@NewWidget2')->name('newModuleWidget2');
+
 /*Tutorial*/
 
 Route::get('/tutorial/{id}','TutorialController@ShowTutorial')->name('tutorial');

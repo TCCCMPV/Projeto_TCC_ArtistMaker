@@ -7,6 +7,7 @@ use App\ContentHasWidget;
 use App\Comment;
 use App\Subcategory;
 use App\Category;
+use App\Widget;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class ModuleController extends Controller
         $module->user_id = Auth::id();
         if($request->file('thumb') != null)
         {
-            $module->thumbnail = Storage::url($request->file('thumb')->store('public/'.auth::id().'modules/thumbnails'));
+            $module->thumbnail = Storage::url($request->file('thumb')->store('public/'.auth::id().'/0modules/thumbnails'));
         }
         else
         {
@@ -57,5 +58,16 @@ class ModuleController extends Controller
         $module->save();
         return redirect()->route('module',$module_id);
     }
-}
 
+    //widgets
+    public function NewWidget1($id)
+    {
+        $widgets = Widget::all();
+        return view('content.module.newWidget1',['id'=>$id,'widgets'=>$widgets]);
+    }
+    public function NewWidget2(Request $request, $id)
+    {
+        $widget = $request->input('widget');
+        return view('content.module.newWidget2',['widget'=>$widget,'id'=>$id]);
+    }
+}

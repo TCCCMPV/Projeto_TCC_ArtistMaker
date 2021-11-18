@@ -12,6 +12,8 @@
      <hr>
     @endforeach
     <hr>
+    <a href="{{route('newModuleWidget1',$module->id)}}">Novo componente</a>
+    <hr>
     {{-- seção de comentários --}}
     <h1>Comentários:</h1>
     <form method="post" action="{{ route('insertModuleComment', $module->id) }}">
