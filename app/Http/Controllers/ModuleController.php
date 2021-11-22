@@ -68,6 +68,7 @@ class ModuleController extends Controller
     public function NewWidget2(Request $request, $id)
     {
         $widget = $request->input('widget');
+        dd($widget);
         return view('content.module.newWidget2',['widget'=>$widget,'id'=>$id]);
     }
 }
