@@ -36,7 +36,7 @@ class ModuleController extends Controller
         $module->user_id = Auth::id();
         if($request->file('thumb') != null)
         {
-            $module->thumbnail = Storage::url($request->file('thumb')->store('public/'.auth::id().'/0modules/thumbnails'));
+            $module->thumbnail = Storage::url($request->file('thumb')->store('public/'.auth::id().'/modules/thumbnails'));
         }
         else
         {
@@ -68,7 +68,52 @@ class ModuleController extends Controller
     public function NewWidget2(Request $request, $id)
     {
         $widget = $request->input('widget');
-        dd($widget);
         return view('content.module.newWidget2',['widget'=>$widget,'id'=>$id]);
+    }
+    public function InsertWidget(Request $request, $id)
+    {
+        $widget = $request->input('widget');
+        $contentHasWidgets = new ContentHasWidget;
+        if($request->has('text1'))
+        {
+            $contentHasWidgets->text1 = $request->input('text1');
+        }
+        if($request->has('text2'))
+        {
+            $contentHasWidgets->text2 = $request->input('text2');
+        }
+        if($request->has('text3'))
+        {   
+            $contentHasWidgets->text3 = $request->input('text3');
+        }
+        if($request->has('alt1'))
+        {
+            $contentHasWidgets->alt1 = $request->input('alt1');
+        }
+        if($request->has('alt2'))
+        {
+            $contentHasWidgets->alt2 = $request->input('alt2');
+        }
+        if($request->has('alt3'))
+        {
+            $contentHasWidgets->alt3 = $request->input('alt3');
+        }
+        if($request->has('src1'))
+        {
+            $contentHasWidgets->src1 = Storage::url($request->file('src1')->store('/public/'.auth::id().'/modules/'.$id));
+        }
+        if($request->has('src2'))
+        {
+            $contentHasWidgets->src2 = Storage::url($request->file('src2')->store('/public/'.auth::id().'/modules/'.$id));
+        }
+        if($request->has('src3'))
+        {
+            $contentHasWidgets->src3 = Storage::url($request->file('src3')->store('/public/'.auth::id().'/modules/'.$id));
+        }
+        $contentHasWidgets->widget_id = $widget;
+        $contentHasWidgets->position = $request->input('position');
+        $contentHasWidgets->content_id = $id;
+        $contentHasWidgets->save();
+        return redirect()->route('module',$id);
     }
 }
