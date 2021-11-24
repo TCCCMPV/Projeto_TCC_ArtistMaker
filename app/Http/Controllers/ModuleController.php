@@ -59,6 +59,13 @@ class ModuleController extends Controller
         return redirect()->route('module',$module_id);
     }
 
+    //edits
+
+    public function EditTitle($id)
+    {
+        return view('content.module.editTitle',['id'=>$id,'module'=>$module]);
+    }
+
     //widgets
     public function NewWidget1($id)
     {
