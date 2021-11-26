@@ -147,4 +147,11 @@ class ModuleController extends Controller
         $contentHasWidgets->save();
         return redirect()->route('module',$id);
     }
+    public function DeleteWidget($id)
+    {
+        $contentHasWidget = ContentHasWidget::where('id',$id)->first();
+        $id = $contentHasWidget->content_id;
+        $contentHasWidget->delete();
+        return redirect()->route('module',$id);
+    }
 }

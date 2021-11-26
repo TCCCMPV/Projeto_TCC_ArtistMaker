@@ -47,6 +47,7 @@ Route::delete('/module/{id}/delete-comment','CommentController@DeleteComment')->
 Route::get('/module/{id}/new-widget1','ModuleController@NewWidget1')->name('newModuleWidget1');
 Route::post('/module/{id}/new-widget2','ModuleController@NewWidget2')->name('newModuleWidget2');
 Route::post('/module/{id}/insert-widget','ModuleController@InsertWidget')->name('insertModuleWidget');
+Route::delete('/module/{id}/delete-widget','ModuleController@DeleteWidget')->name('deleteModuleWidget');
 
 /*Tutorial*/
 

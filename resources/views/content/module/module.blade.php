@@ -3,22 +3,27 @@
 
     <h1>{{ $module->name }}</h1>
     @auth
-    <a href="{{route('editModuleTitle',$module->id)}}">Editar título</a><br>
-    @endauth    
+        <a href="{{ route('editModuleTitle', $module->id) }}">Editar título</a><br>
+    @endauth
     <img src="{{ $module->thumbnail }}">
     @auth
-    <a href="{{route('editModuleThumb',$module->id)}}">Editar thumb</a>
+        <a href="{{ route('editModuleThumb', $module->id) }}">Editar thumb</a>
     @endauth
     <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a></p>
     <p>{{ $module->description }}</p>
-    <hr>{{--Widgets--}}
+    <hr>{{-- Widgets --}}
     @foreach ($contentHasWidgets as $contentHasWidget)
-     {!!str_replace(['{$text1}','{$text2}','{$text3}','{$src1}','{$src2}','{$src3}','{$alt1}','{$alt2}','{$alt3}'], [$contentHasWidget->text1,$contentHasWidget->text2,$contentHasWidget->text3,$contentHasWidget->src1,$contentHasWidget->src2,$contentHasWidget->src3,$contentHasWidget->alt1,$contentHasWidget->alt2,$contentHasWidget->alt3], $contentHasWidget->widget->code)!!}
-     <p>[{{$contentHasWidget->position}}]</p>
-     <hr>
+        {!! str_replace(['{$text1}', '{$text2}', '{$text3}', '{$src1}', '{$src2}', '{$src3}', '{$alt1}', '{$alt2}', '{$alt3}'], [$contentHasWidget->text1, $contentHasWidget->text2, $contentHasWidget->text3, $contentHasWidget->src1, $contentHasWidget->src2, $contentHasWidget->src3, $contentHasWidget->alt1, $contentHasWidget->alt2, $contentHasWidget->alt3], $contentHasWidget->widget->code) !!}
+        <form action="{{route('deleteModuleWidget',$contentHasWidget->id)}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <input type="submit" value="Deletar">
+        </form>
+        <p>[{{ $contentHasWidget->position }}]</p>
+        <hr>
     @endforeach
     <hr>
-    <a href="{{route('newModuleWidget1',$module->id)}}">Novo componente</a>
+    <a href="{{ route('newModuleWidget1', $module->id) }}">Novo componente</a>
     <hr>
     {{-- seção de comentários --}}
     <h1>Comentários:</h1>
