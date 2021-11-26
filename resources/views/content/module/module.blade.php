@@ -6,6 +6,9 @@
     <a href="{{route('editModuleTitle',$module->id)}}">Editar título</a><br>
     @endauth    
     <img src="{{ $module->thumbnail }}">
+    @auth
+    <a href="{{route('editModuleThumb',$module->id)}}">Editar thumb</a>
+    @endauth
     <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a></p>
     <p>{{ $module->description }}</p>
     <hr>{{--Widgets--}}

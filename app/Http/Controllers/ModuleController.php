@@ -74,6 +74,22 @@ class ModuleController extends Controller
         return redirect()->route('module',$id);
     }
 
+    public function EditThumb ($id)
+    {
+        $module = Content::where('id',$id)->first();
+        return view('content.module.editThumb',['module'=>$module]);
+    }
+    public function InsertThumb(Request $request, $id)
+    {
+        if($request->has('thumb'))
+        {
+            $module = Content::where('id',$id)->first();
+            $module->thumbnail = Storage::url($request->file('thumb')->store('/public/'.auth::id().'/modules/'.$module->id));
+            $module->save();
+        }
+        return redirect()->route('module',$id);
+    }
+
     //widgets
     public function NewWidget1($id)
     {

@@ -36,6 +36,9 @@ route::post('/post/module','ModuleController@PostModule')->name('postModule');
 Route::get('/module/{id}/edit-title','ModuleController@EditTitle')->name('editModuleTitle');
 Route::post('/module/{id}/insert-title','ModuleController@InsertTitle')->name('insertModuleTitle');
 
+Route::get('/module/{id}/edit-thumb','ModuleController@EditThumb')->name('editModuleThumb');
+Route::post('/module/{id}/insert-thumb','ModuleController@InsertThumb')->name('insertModuleThumb');
+
 Route::post('/module/{id}/new-comment','CommentController@InsertComment')->name('insertModuleComment');
 Route::get('/module/{id}/edit-comment','CommentController@EditComment')->name('editModuleComment');
 Route::put('/module/{id}/put-comment','CommentController@PutComment')->name('putModuleComment');
