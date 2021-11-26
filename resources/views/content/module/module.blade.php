@@ -2,6 +2,9 @@
 @section('content')
 
     <h1>{{ $module->name }}</h1>
+    @auth
+    <a href="{{route('editModuleTitle',$module->id)}}">Editar título</a><br>
+    @endauth    
     <img src="{{ $module->thumbnail }}">
     <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a></p>
     <p>{{ $module->description }}</p>

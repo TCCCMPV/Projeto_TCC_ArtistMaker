@@ -63,7 +63,15 @@ class ModuleController extends Controller
 
     public function EditTitle($id)
     {
+        $module = Content::where('id',$id)->first();
         return view('content.module.editTitle',['id'=>$id,'module'=>$module]);
+    }
+    public function InsertTitle(Request $request, $id)
+    {
+        $module = Content::where('id',$id)->first();
+        $module->name = $request->input('title');
+        $module->save();
+        return redirect()->route('module',$id);
     }
 
     //widgets

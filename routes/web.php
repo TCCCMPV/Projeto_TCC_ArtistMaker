@@ -33,6 +33,9 @@ Route::get('/new/module','ModuleController@NewModule1')->name('newModule1');
 Route::post('/new2/module','ModuleController@NewModule2')->name('newModule2');
 route::post('/post/module','ModuleController@PostModule')->name('postModule');
 
+Route::get('/module/{id}/edit-title','ModuleController@EditTitle')->name('editModuleTitle');
+Route::post('/module/{id}/insert-title','ModuleController@InsertTitle')->name('insertModuleTitle');
+
 Route::post('/module/{id}/new-comment','CommentController@InsertComment')->name('insertModuleComment');
 Route::get('/module/{id}/edit-comment','CommentController@EditComment')->name('editModuleComment');
 Route::put('/module/{id}/put-comment','CommentController@PutComment')->name('putModuleComment');
