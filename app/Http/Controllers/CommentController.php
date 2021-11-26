@@ -23,9 +23,31 @@ class CommentController extends Controller
         {
             return redirect()->route('tutorial',$id);
         }
-        else if($content->content_type_id == 'module')
+        if($content->content_type_id == 'module')
         {
             return redirect()->route('module',$id);
+        }
+        if($content->content_type_id == 'course')
+        {
+            return redirect()->route('course',$id);
+        }
+    }
+    public function DeleteComment($id)
+    {
+        $comment = Comment::where('id',$id)->first();
+        $content = Content::where('id',$comment->content_id)->first();
+        $comment->delete();
+        if($content->content_type_id == 'tutorial')
+        {
+            return redirect()->route('tutorial',$content->id);
+        }
+        if($content->content_type_id == 'module')
+        {
+            return redirect()->route('module',$content->id);
+        }
+        if($content->content_type_id == 'course')
+        {
+            return redirect()->route('course',$content->id);
         }
     }
 }
