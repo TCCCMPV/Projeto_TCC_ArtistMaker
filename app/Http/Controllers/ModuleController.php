@@ -66,7 +66,7 @@ class ModuleController extends Controller
         $module = Content::where('id',$id)->first();
         return view('content.module.editTitle',['id'=>$id,'module'=>$module]);
     }
-    public function InsertTitle(Request $request, $id)
+    public function PutTitle(Request $request, $id)
     {
         $module = Content::where('id',$id)->first();
         $module->name = $request->input('title');
@@ -79,7 +79,7 @@ class ModuleController extends Controller
         $module = Content::where('id',$id)->first();
         return view('content.module.editThumb',['module'=>$module]);
     }
-    public function InsertThumb(Request $request, $id)
+    public function PutThumb(Request $request, $id)
     {
         if($request->has('thumb'))
         {
@@ -87,6 +87,18 @@ class ModuleController extends Controller
             $module->thumbnail = Storage::url($request->file('thumb')->store('/public/'.auth::id().'/modules/'.$module->id));
             $module->save();
         }
+        return redirect()->route('module',$id);
+    }
+    public function EditDesc($id)
+    {
+        $module = Content::where('id',$id)->first();
+        return view('content.module.editDesc',['module'=>$module]);
+    }
+    public function PutDesc(Request $request, $id)
+    {
+        $module = Content::where('id',$id)->first();
+        $module->description = $request->input('desc');
+        $module->save();
         return redirect()->route('module',$id);
     }
 

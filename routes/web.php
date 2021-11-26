@@ -34,10 +34,13 @@ Route::post('/new2/module','ModuleController@NewModule2')->name('newModule2');
 route::post('/post/module','ModuleController@PostModule')->name('postModule');
 
 Route::get('/module/{id}/edit-title','ModuleController@EditTitle')->name('editModuleTitle');
-Route::post('/module/{id}/insert-title','ModuleController@InsertTitle')->name('insertModuleTitle');
+Route::put('/module/{id}/put-title','ModuleController@PutTitle')->name('putModuleTitle');
 
 Route::get('/module/{id}/edit-thumb','ModuleController@EditThumb')->name('editModuleThumb');
-Route::post('/module/{id}/insert-thumb','ModuleController@InsertThumb')->name('insertModuleThumb');
+Route::put('/module/{id}/put-thumb','ModuleController@PutThumb')->name('putModuleThumb');
+
+Route::get('/module/{id}/edit-desc','ModuleController@EditDesc')->name('editModuleDesc');
+Route::put('/module/{id}/put-desc','ModuleController@PutDesc')->name('putModuleDesc');
 
 Route::post('/module/{id}/new-comment','CommentController@InsertComment')->name('insertModuleComment');
 Route::get('/module/{id}/edit-comment','CommentController@EditComment')->name('editModuleComment');

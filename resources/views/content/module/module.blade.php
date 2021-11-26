@@ -9,8 +9,9 @@
     @auth
         <a href="{{ route('editModuleThumb', $module->id) }}">Editar thumb</a>
     @endauth
-    <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a></p>
-    <p>{{ $module->description }}</p>
+    <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a> Categoria: Subcategoria:</p>
+    <p>{{$module->description}}</p><br>
+    <a href="{{route('editModuleDesc',$module->id)}}">Editar descrição</a>
     <hr>{{-- Widgets --}}
     @foreach ($contentHasWidgets as $contentHasWidget)
         {!! str_replace(['{$text1}', '{$text2}', '{$text3}', '{$src1}', '{$src2}', '{$src3}', '{$alt1}', '{$alt2}', '{$alt3}'], [$contentHasWidget->text1, $contentHasWidget->text2, $contentHasWidget->text3, $contentHasWidget->src1, $contentHasWidget->src2, $contentHasWidget->src3, $contentHasWidget->alt1, $contentHasWidget->alt2, $contentHasWidget->alt3], $contentHasWidget->widget->code) !!}
@@ -29,7 +30,8 @@
     <h1>Comentários:</h1>
     <form method="post" action="{{ route('insertModuleComment', $module->id) }}">
         @csrf
-        <label>Novo Comentário:</label><textarea name="text"></textarea><input type="submit" value="Publicar">
+        <label>Novo Comentário:</label><br>
+        <textarea name="text"></textarea><input type="submit" value="Publicar">
     </form>
     @foreach ($comments as $comment)
         <table>
