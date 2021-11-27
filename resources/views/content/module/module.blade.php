@@ -5,7 +5,7 @@
     @auth
         <a href="{{ route('editModuleTitle', $module->id) }}">Editar título</a><br>
     @endauth
-    <img src="{{ $module->thumbnail }}">
+    <img width="400" src="{{ $module->thumbnail }}">
     @auth
         <a href="{{ route('editModuleThumb', $module->id) }}">Editar thumb</a>
     @endauth
