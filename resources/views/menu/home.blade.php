@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.teste')
 
 @section('content')
 <nav>
