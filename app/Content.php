@@ -26,4 +26,8 @@ class Content extends Model
     {
         return $this->hasMany('App\Video');
     }
+    public function subcategory()
+    {
+        return $this->belongsTo('App\Subcategory');
+    }
 }

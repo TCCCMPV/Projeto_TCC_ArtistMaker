@@ -9,7 +9,7 @@
     @auth
         <a href="{{ route('editModuleThumb', $module->id) }}">Editar thumb</a>
     @endauth
-    <p>Criado por: <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a> Categoria: Subcategoria:</p>
+    <p><b>Criado por:</b> <a href="{{ route('user', $module->user_id) }}">{{ $module->user->nick }}</a> <b>Categoria/Subcategoria:</b> {{$module->subcategory->category->id}}/{{$module->subcategory->id}}</p>
     <p>{{$module->description}}</p><br>
     <a href="{{route('editModuleDesc',$module->id)}}">Editar descrição</a>
     <hr>{{-- Widgets --}}

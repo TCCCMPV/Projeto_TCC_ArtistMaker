@@ -29,6 +29,7 @@ class CourseController extends Controller
         $course = new Content;
         $course->name = $request->input('name');
         $course->content_type_id = 'course';
+        $course->subcategory_id = $request->input('subcategory');
         $course->description = $request->input('desc');
         if ($request->has('thumb')) {
             $course->thumbnail = Storage::url($request->file('thumb')->store('/public/'.Auth::id().'/courses/thumbnails'));
@@ -41,5 +42,30 @@ class CourseController extends Controller
         $course->save();
         return redirect()->route('user',Auth::id());
         
+    }
+
+    //modules
+    public function NewModule($id)
+    {
+        return view('content.course.newModule',['id'=>$id]);
+    }
+    public function InsertModule(Request $request, $id)
+    {
+        $module = new Content;
+        $module->name = $request->input('name');
+        $module->description = $request->input('description');
+        if($request->has('thumb'))
+        {
+        $module->thumbnail = Storage::url($request->file('thumb')->store('/public/'.auth::id().'/Courses/'.$id));
+        }
+        else{
+            $module->thumbnail = '/default/UnknownContent.png';
+        }
+        $module->position = $request->input('position');
+        $module->content_type_id = 'course_module';
+        $module->content_id = $id;
+        $module->user_id = auth::id();
+        $module->save();
+        return redirect()->route('course',$id);
     }
 }
