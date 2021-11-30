@@ -102,7 +102,7 @@
             </span>
             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror bg-dark text-white" placeholder="Email" aria-label="Email" aria-describedby="basic-addon2" required autocomplete="email" autofocus>
             @error('email')
-            <span class="invalid-tooltip">
+            <span class="invalid-tooltip text-dark">
                 Email ou senha inválidos
             </span>
         @enderror
@@ -111,14 +111,14 @@
             <span class="input-group-text bg-primary text-dark" id="basic-addon1"><i class='bx bxs-lock-alt' ></i></span>
             <input type="password" name="password" id="password" class="form-control bg-dark text-white @error('password') is-invalid @enderror"  placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1  required autocomplete="current-password">
             @error('password')
-            <span class="invalid-tooltip" >
+            <span class="invalid-tooltip text-dark" >
                 Email ou senha inválidos
             </span>
         @enderror
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label text-white" for="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <label class="form-check-label text-white" for="remember">
               Lembrar de mim
             </label>
           </div>
