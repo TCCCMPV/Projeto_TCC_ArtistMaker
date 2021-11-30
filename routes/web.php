@@ -25,6 +25,7 @@ Route::get('/search/tutorial','SearchController@Showtutorials')->name('searchTut
 
 Route::get('/course/{id}','CourseController@ShowCourse')->name('course');
 Route::get('/new/course','CourseController@NewCourse')->name('newCourse');
+Route::post('/post/course','CourseController@PostCourse')->name('postCourse');
 
 /*Module*/
 

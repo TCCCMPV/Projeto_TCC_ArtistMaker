@@ -20,5 +20,8 @@ class ContentTypeSeeder extends Seeder
         DB::table('content_types')->insert([
             'id' => 'tutorial'
         ]);
+        DB::table('content_types')->insert([
+            'id' => 'course_module'
+        ]);
     }
 }
