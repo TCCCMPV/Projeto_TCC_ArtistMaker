@@ -23,10 +23,14 @@ class TutorialController extends Controller
         $images = Content::where('id',$id)->first()->images()->get();
         $texts = Content::where('id',$id)->first()->texts()->get();
         $videos = Content::where('id',$id)->first()->videos()->get();
+        /*
         $mix = $images->merge($texts);
         $mix = $mix->merge($videos);
+        */
+        $mix = $images->mergeRecursive($texts);
+        $mix = $mix->mergeRecursive($videos);
         $mix = $mix->sortBy('position');
-
+        
         //comentários
         $comments = Comment::where('content_id',$tutorial->id)->get();
 

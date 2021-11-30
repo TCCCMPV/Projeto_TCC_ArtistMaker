@@ -29,6 +29,7 @@ Route::post('/post/course','CourseController@PostCourse')->name('postCourse');
 
 Route::get('/course/{id}/new-module','CourseController@NewModule')->name('newCourseModule');
 Route::post('/course/{id}/insert-module','CourseController@InsertModule')->name('insertCourseModule');
+Route::get('/course/module/{id}','CourseController@ShowModule')->name('courseModule');
 
 /*Module*/
 

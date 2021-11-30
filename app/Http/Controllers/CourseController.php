@@ -53,7 +53,7 @@ class CourseController extends Controller
     {
         $module = new Content;
         $module->name = $request->input('name');
-        $module->description = $request->input('description');
+        $module->description = $request->input('desc');
         if($request->has('thumb'))
         {
         $module->thumbnail = Storage::url($request->file('thumb')->store('/public/'.auth::id().'/Courses/'.$id));
