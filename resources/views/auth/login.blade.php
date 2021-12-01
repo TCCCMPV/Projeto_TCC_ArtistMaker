@@ -62,32 +62,17 @@
 </head>
 <body>
     <div class="flex-center position-ref full-height">
-        @if (Route::has('register'))
-            <div class="top-right links">
-                @auth
-                    <a href="{{ url('/home') }}"> <div><box-icon type='solid' name='home'></box-icon></div> Home</a>
-                @else
-
-                    <a href="{{ route('register') }}"> 
-                        <button type="button" class="btn btn-outline-success shadow">
+        <div class="top-right links">
+           
+                <a href="{{ url('/') }}"> 
+                        <button class="btn btn-info text-dark shadow"> 
                             <b>
-                                Cadastre-se 
-                        </button>
+                                <i class='bx bx-arrow-back' >
+                                </i>
+                                Voltar ao início
+                        </button> 
                     </a>
-                     
-                    @if (Route::has('register'))
-                    <a href="{{ url('/') }}"> 
-                            <button class="btn btn-info text-dark shadow"> 
-                                <b>
-                                <i class='bx bx-arrow-back' ></i>
-                                    Voltar ao início
-                                </b>
-                            </button> 
-                        </a>
-                    @endif
-                @endauth
-            </div>
-        @endif
+        </div>
     <br><br><br><br>
     <div class="container p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg">
     <form method="POST" action="{{ route('login') }}">
@@ -121,21 +106,29 @@
             <label class="form-check-label text-white" for="remember">
               Lembrar de mim
             </label>
+          </div> 
+          <br>
+          <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary text-dark shadow"> 
+              <b> 
+                  Login 
+              </b> 
+          </button>
           </div>
           <div><hr class="divider text-white"></div>
         <div class="d-grid gap-2">
             @if (Route::has('password.request'))
-                                    <a class="btn btn-danger text-dark shadow" href="{{ route('password.request') }}">
-                                     <b> Esqueceu a senha? </b>   
-                                    </a>
-                                @endif
-        <button type="submit" class="btn btn-primary text-dark shadow"> 
-            <b> 
-                Login 
-            </b> 
-        </button>
+                    <a class="btn btn-outline-danger shadow" href="{{ route('password.request') }}">
+                         <b> 
+                             Esqueceu a senha? 
+                         </b>   
+                    </a>
+            @endif
         </div>
       </form>
+    </div>
+    <div class="container p-3 mb-5 mx-auto bg-dark rounded-3 text-center border border-primary shadow-lg">
+        <h6 class="text-white">Não tem conta? Crie uma <a href="{{ route('register') }}" class="link-primary">aqui.</a></h6>
     </div>
 
 </body>

@@ -86,7 +86,7 @@
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">
-                                <button class="btn btn-success shadow text-dark"> 
+                                <button class="btn btn-outline-success shadow"> 
                                     <b>
                                         Cadastre-se
                                     </b> 

@@ -139,39 +139,21 @@
 </head>
 <body>
     <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
             <div class="top-right links">
-                @auth
-                @else
-
-                    <a href="{{ route('login') }}"> 
-                        <button type="button" class="btn btn-outline-primary shadow">
-                            <i class='bx bx-log-in' ></i> 
-                            <b>
-                                Login    
-                        </button>
-                    </a>
-                     
-                    @if (Route::has('register'))
+               
                     <a href="{{ url('/') }}"> 
                             <button class="btn btn-info text-dark shadow"> 
                                 <b>
                                     <i class='bx bx-arrow-back' >
                                     </i>
                                     Voltar ao início
-                                </b>
                             </button> 
                         </a>
-                    @endif
-                @endauth
             </div>
-        @endif
-
     <br>
     <br>
     <br>
     <br>
-
     <div class="container p-3 mb-5 mx-auto bg-dark rounded-3 text-center border border-primary shadow-lg">
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -226,6 +208,9 @@
         </button>
         </div>
       </form>
+    </div>
+    <div class="container p-3 mb-5 mx-auto bg-dark rounded-3 text-center border border-primary shadow-lg">
+        <h6 class="text-white">Já possui conta? Faça login <a href="{{ route('login') }}" class="link-primary">aqui.</a></h6>
     </div>
 
 </body>
