@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg">
+<div class="container mx-auto p-3 mb-5 bg-dark rounded-3 border border-primary shadow-lg">
 
     <h1>{{ $tutorial->name }}</h1>
     <h6 style="margin-left: 6px">Criado por: <a href="{{ route('user', $tutorial->user_id) }}">{{ $tutorial->user->nick
@@ -35,7 +35,7 @@
     @if ($mic->text !== null)
     <div class="row">
         <div class="col-9">
-            <p class="text-break">{{ $mic->text }}</p>
+            <p class="text-break">{!!nl2br($mic->text)!!}</p>
         </div>
         <div class="col-3 d-flex justify-content-end">
             <div>
@@ -46,7 +46,8 @@
     <div class="row">
         <div class="col-12">
             @if (Auth::id() == $tutorial->user_id)
-            <a href="{{ route('editTutorialText', $mic->id) }}"><button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i></button></a>
+            <a href="{{ route('editTutorialText', $mic->id) }}"><button class="btn btn-primary text-dark"><i
+                        class='bx bxs-edit'></i></button></a>
             <button type="submit" form="delete{{$mic->id}}" class="btn btn-danger text-dark"><i
                     class='bx bxs-trash'></i></button>
             @endif
@@ -133,39 +134,44 @@
                 form="comment" type="submit" class="btn btn-primary text-dark"><i class='bx bxs-send'></i></button>
         </div>
     </form><br>
-    @foreach ($comments as $comment)
-    <hr class="divider text-white">
-    <div>
-        <div class="row">
+    
+    <div class="container border border-primary rounded-3 text-white"  style="background-color: rgb(24, 24, 24);">
 
-            <div class="col-6">
-                <img class="rounded-circle" src="{{ $comment->user->picture }}" width="50">
-                <a style="margin-left: 6px" href="{{route('user',$comment->user->id)}}">{{ $comment->user->nick}}</a>
-                @if ($comment->user_id == Auth::id())
-                <a href="{{ route('editTutorialComment', $comment->id) }}"><button class="btn btn-primary text-dark"
+        @foreach ($comments as $comment)
+        <div style="margin: 10px">
+            <div class="row" >
+
+                <div class="col-6">
+                    <img class="rounded-circle" src="{{ $comment->user->picture }}" width="50">
+                    <a style="margin-left: 6px" href="{{route('user',$comment->user->id)}}">{{
+                        $comment->user->nick}}</a>
+                    @if ($comment->user_id == Auth::id())
+                    <a href="{{ route('editTutorialComment', $comment->id) }}"><button class="btn btn-primary text-dark"
                         style="margin-right: 6px; margin-left: 6px;"><i class='bx bxs-edit'></i></button></a>
-                <button form="comment{{$comment->id}}" type="submit" class="btn btn-danger text-dark"><i
-                        class='bx bxs-trash'></i></button>
-                @endif
+                    <button form="comment{{$comment->id}}" type="submit" class="btn btn-danger text-dark"><i
+                            class='bx bxs-trash'></i></button>
+                            @endif
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    Postado: {{ $comment->created_at->format('d/m/y - H:i') }}
+                </div>
             </div>
-            <div class="col-6 d-flex justify-content-end">
-                Postado: {{ $comment->created_at->format('d/m/y - H:i') }}
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-break">{!! nl2br($comment->comment) !!}</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <p class="text-break">{{ $comment->comment }}</p>
-            </div>
-        </div>
+        @if ($comment->user_id == Auth::id())
+        <form id="comment{{$comment->id}}" method="post" action="{{ route('DeleteTutorialComment', $comment->id) }}">
+            @csrf
+            @method('DELETE')
+        </form>
+        @endif
+        <hr class="divider text-white">
+        @endforeach
     </div>
-    @if ($comment->user_id == Auth::id())
-    <form id="comment{{$comment->id}}" method="post" action="{{ route('DeleteTutorialComment', $comment->id) }}">
-        @csrf
-        @method('DELETE')
-    </form>
-    @endif
-    @endforeach
-
+    
 </div>
 <hr>
 
@@ -175,7 +181,7 @@
         <td><img class="rounded-circle" src="{{ $comment->user->picture }}" width="50"> </td>
         <td> <a style="margin-left: 6px" href="{{route('user',$comment->user->id)}}">{{ $comment->user->nick
                 }}</a></td>
-        <h6>Postado: {{ $comment->created_at->format('d/m/y - H:i') }}</h6>
+                <h6>Postado: {{ $comment->created_at->format('d/m/y - H:i') }}</h6>
         @if ($comment->user_id == Auth::id())
         <td>
             <a href="{{ route('editTutorialComment', $comment->id) }}"><button class="btn btn-primary text-dark"

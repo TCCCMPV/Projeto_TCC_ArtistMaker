@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Content;
 use App\Category;
 use App\Subcategory;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -16,15 +17,15 @@ class CourseController extends Controller
     {
         $subcategories = Subcategory::all();
         $subcategories = $subcategories->sortBy('category_id');
-        return view('content.course.new',['subcategories'=>$subcategories,'link'=>'courses']);
+        return view('content.course.new',['subcategories'=>$subcategories,'link'=>'create']);
     }
     public function ShowCourse($id)
     {
         $course = Content::where('id',$id)->where('content_type_id','course')->first();
-        
+        $comments = Comment::where('content_id',$id)->get();
         $modules = Content::where('content_id',$id)->where('content_type_id','course_module')->get();
         $modules = $modules->sortBy('position');
-        return view('content.course.course',['course'=>$course,'modules'=>$modules,'link'=>'courses']);
+        return view('content.course.course',['course'=>$course,'modules'=>$modules,'link'=>'courses','comments'=>$comments]);
     }
     public function PostCourse(Request $request)
     {
@@ -49,7 +50,8 @@ class CourseController extends Controller
     //modules
     public function NewModule($id)
     {
-        return view('content.course.newModule',['id'=>$id,'link'=>'courses']);
+        $subcategories = Subcategory::all();
+        return view('content.course.newModule',['id'=>$id,'link'=>'courses','subcategories'=>$subcategories]);
     }
     public function InsertModule(Request $request, $id)
     {

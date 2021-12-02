@@ -195,19 +195,21 @@
 
 @extends('layouts.default')
 @section('content')
-<div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg" >
-  <h1 class="mb-4">Tutoriais</h1>
-  @auth
-  <a href="{{route('newTutorial')}}"> <button type="button" style="margin-bottom: 20px" class="btn btn-primary text-dark">Criar novo tutorial</button></a>
-
-  @endauth
+<div class="container p-3 mb-5 mx-auto bg-dark rounded-3 border  shadow-lg" style="b" >
+  <h1 class="mb-4"><i class='bx bxs-pencil' ></i> Tutoriais</h1>
+ <hr class="divider">
+  
   <div class="row row-cols-4 row-cols-md-4 g-3">
   @foreach ($tutorials as $tutorial)
       <div class="col">
           <div class="card bg-dark text-dark text-center shadow" style="width: 18rem; border-color: #000">
               <img src="{{$tutorial->thumbnail}} " height="200px" width="200px" class="card-img-top" alt="...">
               <div class="card-body">
-                  <h5 class="card-title text-white"><b>{{$tutorial->name}} </b></h5>
+                <div class="card-title text-white d-flex p-2 bd-highlight justify-content-center" style="height: 80px" >
+                  <div class="align-self-center" style="width: 250px">
+                    <h5><b>{{substr($tutorial->name,0,95)}}</b></h5>
+                  </div>
+                </div>
                   <a href="{{route('tutorial',$tutorial->id)}}" class="btn btn-outline-primary">Acessar</a>
               </div>
           </div>

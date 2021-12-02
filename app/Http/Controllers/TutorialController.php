@@ -41,7 +41,7 @@ class TutorialController extends Controller
     {
         $subcategories = Subcategory::all();
         $subcategories = $subcategories->sortBy('category_id');
-        return view('content.tutorial.new',['link'=>'tutorials','subcategories'=>$subcategories]);
+        return view('content.tutorial.new',['link'=>'create','subcategories'=>$subcategories]);
     }
     public function PostTutorial(Request $request)
     {

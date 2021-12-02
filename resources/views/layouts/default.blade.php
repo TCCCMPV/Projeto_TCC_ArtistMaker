@@ -138,6 +138,23 @@
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
+                  @if ($link == 'create')
+                  <a class="nav-link active dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @else
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  @endif
+                  <i class='bx bxs-plus-circle' ></i>
+                    Criar
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item text-white" href="{{ route('newTutorial') }}" ><i class='bx bxs-pencil' ></i> Criar Tutorial</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('newCourse') }}"><i class='bx bxs-book' ></i> Criar Curso</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('newModule') }}"><i class='bx bxs-book-content' ></i> Criar Módulo</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
                   @if ($link == 'user')
                   <a class="nav-link active dropdown-toggle" href="{{ route('user', Auth::id()) }}" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @else

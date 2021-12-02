@@ -157,12 +157,9 @@
 @extends('layouts.default')
 @section('content')
 <div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg" >
-    <h1 class="mb-4">Cursos</h1>
-    
-@auth
-    <a href="{{route('newCourse')}}"> <button type="button" style="margin-bottom: 20px" class="btn btn-primary text-dark">Criar novo curso</button></a>
+    <h1 class="mb-4"><i class='bx bxs-book' ></i> Cursos</h1>
+    <hr class="divider">
 
-    @endauth
    
     <div class="row row-cols-4 row-cols-md-4 g-3">
     @foreach ($courses as $course)
@@ -170,14 +167,20 @@
             <div class="card bg-dark text-dark text-center shadow" style="width: 18rem; border-color: #000">
                 <img src="{{$course->thumbnail}} " height="200px" width="200px" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title text-white"><b>{{$course->name}} </b></h5>
+                    
+                    <div class="card-title text-white d-flex p-2 bd-highlight justify-content-center" style="height: 80px" >
+                      <div class="align-self-center" style="width: 250px">
+                        <h5><b>{{substr($course->name,0,95)}}</b></h5>
+                    </div>
+                    </div>
                     <div><hr class="divider text-white"></div>
-                    <p class="card-text text-white">Descrição</p>
+                    <p class="card-text  text-white mh-100" style="height: 100px">{{substr($course->description,0,125)}}</p>
                     <a href="{{route('course',$course->id)}}" class="btn btn-outline-primary">Acessar</a>
                 </div>
             </div>
         </div>
         @endforeach
+        
       </div>
 </div>
 <br><br><br>

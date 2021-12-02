@@ -5,10 +5,6 @@
     <hr class="divider">
     <h4><i class='bx bxs-user' ></i> Nome: {{$user->full_name}}</h4><br>
     <h4><i class='bx bxs-envelope' ></i> Email: {{$user->email}}</h4><br>
-    <h4><i class='bx bxs-map'></i> Localidade: {{$user->local}}</h4><br>
-    <h4><i class='bx bxs-star' ></i> Avaliação: {{$user->rate}}</h4><br>
-    <h4><i class='bx bxs-check-circle' ></i> Verificado: {{$user->especialist}}</h4><br>
-    <h4><i class='bx bxs-user-check'></i> Especialista: {{$user->especialist}}</h4><br>
     <h4><i class='bx bxs-info-circle' ></i> Biografia: </h4><br>
     <p>{{$user->bio}}</p><br>
     

@@ -24,14 +24,14 @@ class ModuleController extends Controller
     }
     public function NewModule()
     {
-        $categories = Category::all();
-        return view('content.module.new',['categories'=>$categories,'link'=>'modules']);
+        $subcategories = Subcategory::all();
+        return view('content.module.new',['subcategories'=>$subcategories,'link'=>'create']);
     }
     public function PostModule(Request $request)
     {
         $module = new Content;
         $module->name = $request->input('name');
-        $module->description = $request->input('description');
+        $module->description = $request->input('desc');
         $module->qualification_level = $request->input('level');
         $module->content_type_id = 'module';
         $module->user_id = Auth::id();
@@ -45,7 +45,7 @@ class ModuleController extends Controller
         }
         $module->subcategory_id = $request->input('subcategory');
         $module->save();
-        return view('content.menu.user.user',['user'=>auth::id(),'link'=>'modules']);
+        return redirect()->route('user',auth::id());
     }
 
     //edits
