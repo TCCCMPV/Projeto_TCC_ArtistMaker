@@ -22,11 +22,5 @@
     <div class="d-grid gap-2">
         <button class="btn btn-primary text-dark" form="video" type="submit"><b>Enviar</b> </button>
     </div>
-    <!--
-        <label>Posição</label>
-        <input form="video" type="number" name="position">
-        <input form="video" type="submit">
-  
-    -->
 </div>
 @endsection

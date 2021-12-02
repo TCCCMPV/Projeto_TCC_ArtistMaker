@@ -36,7 +36,7 @@
             <select name="subcategory" class="form-select bg-dark text-white" id="inputGroupSelect01" required>
               <option selected>Escolher subcategoria...</option>
               @foreach ($subcategories as $subcategory)
-              <option class="bg-dark text-white" value="{{$subcategory->id}}" for="quali1"><b>{{$subcategory->category->id}}</b>: {{$subcategory->id}}</option>
+              <option class="bg-dark text-white" value="{{$subcategory->id}}" for="quali1">{{ucfirst($subcategory->category->id)}}: {{ucfirst($subcategory->id)}}</option>
               @endforeach
             </select>
           </div>  
