@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{--<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -153,7 +153,9 @@
 
 
 
-<br>
+<br>--}}
+@extends('layouts.default')
+@section('content')
 <div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg" >
     <h1 class="mb-4">Cursos</h1>
     
@@ -179,7 +181,8 @@
       </div>
 </div>
 <br><br><br>
-    
+@endsection
+ {{--   
 
 </body>
 </html>
@@ -197,4 +200,4 @@
         <a href="{{route('course',$course->user_id)}}">{{$course->user->nick}}</a>
     </div>
 @endforeach
--->
+-->--}}

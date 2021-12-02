@@ -34,8 +34,7 @@ Route::get('/course/module/{id}','CourseController@ShowModule')->name('courseMod
 /*Module*/
 
 Route::get('/module/{id}','ModuleController@ShowModule')->name('module');
-Route::get('/new/module','ModuleController@NewModule1')->name('newModule1');
-Route::post('/new2/module','ModuleController@NewModule2')->name('newModule2');
+Route::get('/new/module','ModuleController@NewModule')->name('newModule');
 route::post('/post/module','ModuleController@PostModule')->name('postModule');
 
 Route::get('/module/{id}/edit-title','ModuleController@EditTitle')->name('editModuleTitle');

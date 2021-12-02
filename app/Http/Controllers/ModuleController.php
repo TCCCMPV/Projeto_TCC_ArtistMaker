@@ -20,14 +20,14 @@ class ModuleController extends Controller
         $comments = Comment::where('content_id',$id)->get();
         $contentHasWidgets = ContentHasWidget::where('content_id',$id)->get();
         $contentHasWidgets = $contentHasWidgets->sortBy('position');
-        return view('content.module.module',['module'=>$module,'comments'=>$comments,'contentHasWidgets'=>$contentHasWidgets]);
+        return view('content.module.module',['module'=>$module,'comments'=>$comments,'contentHasWidgets'=>$contentHasWidgets,'link'=>'modules']);
     }
-    public function NewModule1()
+    public function NewModule()
     {
         $categories = Category::all();
-        return view('content.module.new1',['categories'=>$categories]);
+        return view('content.module.new',['categories'=>$categories,'link'=>'modules']);
     }
-    public function NewModule2(Request $request)
+    public function PostModule(Request $request)
     {
         $module = new Content;
         $module->name = $request->input('name');
@@ -43,21 +43,9 @@ class ModuleController extends Controller
         {
             $module->thumbnail = '/default/UnknownContent.png';
         }
-        $module->save();
-        $category = $request->input('category');
-        $subcategories = Subcategory::where('category_id',$category)->get();
-        $module = Content::where('name',$module->name)->where('description',$module->description)->where('user_id',$module->user_id)->first();
-        $module_id = $module->id;
-
-        return view('content.module.new2',['category'=>$category,'subcategories'=>$subcategories,'module_id'=>$module_id]);
-    }
-    public function PostModule(Request $request)
-    {
-        $module_id = $request->input('module_id');
-        $module = Content::where('id',$module_id)->first();
         $module->subcategory_id = $request->input('subcategory');
         $module->save();
-        return redirect()->route('module',$module_id);
+        return view('content.menu.user.user',['user'=>auth::id(),'link'=>'modules']);
     }
 
     //edits
@@ -65,7 +53,7 @@ class ModuleController extends Controller
     public function EditTitle($id)
     {
         $module = Content::where('id',$id)->first();
-        return view('content.module.editTitle',['id'=>$id,'module'=>$module]);
+        return view('content.module.editTitle',['id'=>$id,'module'=>$module,'link'=>'modules']);
     }
     public function PutTitle(Request $request, $id)
     {
@@ -78,7 +66,7 @@ class ModuleController extends Controller
     public function EditThumb ($id)
     {
         $module = Content::where('id',$id)->first();
-        return view('content.module.editThumb',['module'=>$module]);
+        return view('content.module.editThumb',['module'=>$module,'link'=>'modules']);
     }
     public function PutThumb(Request $request, $id)
     {
@@ -93,7 +81,7 @@ class ModuleController extends Controller
     public function EditDesc($id)
     {
         $module = Content::where('id',$id)->first();
-        return view('content.module.editDesc',['module'=>$module]);
+        return view('content.module.editDesc',['module'=>$module,'link'=>'modules']);
     }
     public function PutDesc(Request $request, $id)
     {
@@ -107,12 +95,12 @@ class ModuleController extends Controller
     public function NewWidget1($id)
     {
         $widgets = Widget::all();
-        return view('content.module.newWidget1',['id'=>$id,'widgets'=>$widgets]);
+        return view('content.module.newWidget1',['id'=>$id,'widgets'=>$widgets,'link'=>'modules']);
     }
     public function NewWidget2(Request $request, $id)
     {
         $widget = $request->input('widget');
-        return view('content.module.newWidget2',['widget'=>$widget,'id'=>$id]);
+        return view('content.module.newWidget2',['widget'=>$widget,'id'=>$id,'link'=>'modules']);
     }
     public function InsertWidget(Request $request, $id)
     {

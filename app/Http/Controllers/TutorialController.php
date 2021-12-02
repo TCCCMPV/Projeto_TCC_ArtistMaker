@@ -7,6 +7,7 @@ use App\Image;
 use App\Video;
 use App\Text;
 use App\Comment;
+use App\Subcategory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -34,11 +35,13 @@ class TutorialController extends Controller
         //comentários
         $comments = Comment::where('content_id',$tutorial->id)->get();
 
-        return view('content.tutorial.tutorial',['tutorial'=>$tutorial,'mix'=>$mix,'comments'=>$comments]);
+        return view('content.tutorial.tutorial',['tutorial'=>$tutorial,'mix'=>$mix,'comments'=>$comments,'link'=>'tutorials']);
     }
     public function NewTutorial()
     {
-        return view('content.tutorial.new');
+        $subcategories = Subcategory::all();
+        $subcategories = $subcategories->sortBy('category_id');
+        return view('content.tutorial.new',['link'=>'tutorials','subcategories'=>$subcategories]);
     }
     public function PostTutorial(Request $request)
     {
@@ -53,6 +56,7 @@ class TutorialController extends Controller
             $tutorial->thumbnail = Storage::url($request->file('thumb')->store('/public/'.$tutorial->user_id.'/tutorials/thumbnails'));
         }
         $tutorial->content_type_id = 'tutorial';
+        $tutorial->subcategory_id = $request->input('subcategory');
         $tutorial->save();
         return redirect()->route('tutorial', $tutorial->id);
     }
@@ -92,7 +96,7 @@ class TutorialController extends Controller
             'button 1'=>'Ir ao perfil',
             'button 1 href'=>route('user',Auth::id())
         );
-        return view('menu.warning',['data'=>$data]);
+        return view('menu.warning',['data'=>$data,'link'=>'tutorials']);
         
     }
 
@@ -101,7 +105,7 @@ class TutorialController extends Controller
     public function EditTitle($id)
     {
         $tutorial = Content::where('id',$id)->first();
-        return view('content.tutorial.editTitle',['tutorial'=>$tutorial]);
+        return view('content.tutorial.editTitle',['tutorial'=>$tutorial,'link'=>'tutorials']);
     }
     public function PutTitle(Request $request, $id)
     {
@@ -113,7 +117,7 @@ class TutorialController extends Controller
     public function EditThumb($id)
     {
         $tutorial = Content::where('id',$id)->first();
-        return view('content.tutorial.EditThumb',['tutorial'=>$tutorial]);
+        return view('content.tutorial.EditThumb',['tutorial'=>$tutorial,'link'=>'tutorials']);
     }
     public function PutThumb(Request $request, $id)
     {
@@ -149,12 +153,12 @@ class TutorialController extends Controller
     }
     public function NewImage($id)
     {
-        return view('content.tutorial.newImage', ['id'=>$id]);
+        return view('content.tutorial.newImage', ['id'=>$id,'link'=>'tutorials']);
     }
     public function EditImage($id)
     {
         $image = Image::where('id',$id)->first();
-        return view('content.tutorial.editImage',['image'=>$image]);
+        return view('content.tutorial.editImage',['image'=>$image,'link'=>'tutorials']);
     }
     public function PutImage(Request $request, $id)
     {
@@ -186,11 +190,11 @@ class TutorialController extends Controller
     public function EditText($id)
     {
         $text = Text::where('id',$id)->first();
-        return view('content.tutorial.EditText',['text'=>$text]);
+        return view('content.tutorial.EditText',['text'=>$text,'link'=>'tutorials']);
     }
     public function NewText($id)
     {
-        return view('content.tutorial.newText',['id'=>$id]);
+        return view('content.tutorial.newText',['id'=>$id,'link'=>'tutorials']);
     }
     public function PutText(Request $request, $id)
     {
@@ -218,7 +222,7 @@ class TutorialController extends Controller
                 'button 2'=>'Voltar ao tutorial',
                 'button 2 href'=>route('tutorial',$id)
             );
-            return view('menu.warning',['data'=>$data]);
+            return view('menu.warning',['data'=>$data,'link'=>'tutorials']);
         }
         else{
             $text = new Text;
@@ -241,7 +245,7 @@ class TutorialController extends Controller
     
     public function NewVideo($id)
     {
-        return view('content.tutorial.NewVideo',['id'=>$id]);
+        return view('content.tutorial.NewVideo',['id'=>$id,'link'=>'tutorials']);
     }
     public function InsertVideo(Request $request, $id)
     {
@@ -255,7 +259,7 @@ class TutorialController extends Controller
     public function EditVideo($id)
     {
         $video = Video::where('id',$id)->first();
-        return view('content.tutorial.editVideo',['video'=>$video]);
+        return view('content.tutorial.editVideo',['video'=>$video,'link'=>'tutorials']);
     }
     public function PutVideo(Request $request, $id)
     {

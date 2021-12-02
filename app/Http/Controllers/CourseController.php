@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\Category;
+use App\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,9 @@ class CourseController extends Controller
 {
     public function NewCourse()
     {
-        $categories = Category::all();
-        return view('content.course.new',['categories'=>$categories]);
+        $subcategories = Subcategory::all();
+        $subcategories = $subcategories->sortBy('category_id');
+        return view('content.course.new',['subcategories'=>$subcategories,'link'=>'courses']);
     }
     public function ShowCourse($id)
     {
@@ -22,7 +24,7 @@ class CourseController extends Controller
         
         $modules = Content::where('content_id',$id)->where('content_type_id','course_module')->get();
         $modules = $modules->sortBy('position');
-        return view('content.course.course',['course'=>$course,'modules'=>$modules]);
+        return view('content.course.course',['course'=>$course,'modules'=>$modules,'link'=>'courses']);
     }
     public function PostCourse(Request $request)
     {
@@ -47,7 +49,7 @@ class CourseController extends Controller
     //modules
     public function NewModule($id)
     {
-        return view('content.course.newModule',['id'=>$id]);
+        return view('content.course.newModule',['id'=>$id,'link'=>'courses']);
     }
     public function InsertModule(Request $request, $id)
     {

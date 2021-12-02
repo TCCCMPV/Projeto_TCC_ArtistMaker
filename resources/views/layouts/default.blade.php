@@ -1,10 +1,10 @@
-{{--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tutoriais</title>
+    <title>Artist Maker</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
@@ -61,6 +61,7 @@
     </style>
 </head>
 <body>
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow rounded-bottom">
@@ -72,13 +73,22 @@
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('home') }}">
+                @if ($link == 'home')
+                <a class="nav-link active" aria-current="page" href="{{route('home')}}">
+                  @else
+                  <a class="nav-link" aria-current="page" href="{{route('home')}}">
+                @endif
+
                     <i class='bx bxs-home' ></i>  
                     Home</a>
               </li>
               
               <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @if ($link == 'tutorials')
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  @else
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @endif
                     <i class='bx bxs-pencil' >
                     </i> 
                     Tutoriais
@@ -92,7 +102,11 @@
                   </ul>
                 </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @if ($link == 'courses')
+                <a class="nav-link active dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  @else
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @endif
                     <i class='bx bxs-book'>
                     </i>
                   Cursos
@@ -106,7 +120,11 @@
                 </ul>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @if($link == 'modules')
+                <a class="nav-link active dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  @else
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @endif
                     <i class='bx bxs-book-content'>
                     </i> 
                  Módulos
@@ -120,12 +138,16 @@
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link  dropdown-toggle" href="{{ route('user', Auth::id()) }}" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  @if ($link == 'user')
+                  <a class="nav-link active dropdown-toggle" href="{{ route('user', Auth::id()) }}" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @else
+                    <a class="nav-link dropdown-toggle" href="{{ route('user', Auth::id()) }}" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  @endif
                       
-                          <i class='bx bxs-user'></i>  
-                          {{auth::user()->nick}} 
-                       
-                  </a>
+                    <i class='bx bxs-user'></i>  
+                    {{auth::user()->nick}} 
+                 
+            </a>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                       <li><a class="dropdown-item text-white" href="{{ route('user', Auth::id()) }}">Ir para o perfil</a></li>
                       <li><hr class="dropdown-divider"></li>
@@ -151,81 +173,9 @@
     </div>
 </nav>
 
-
-----------------------------
 <br>
-<div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg" >
-    <h1 class="mb-4">Tutoriais</h1>
-    @auth
-    <a href="{{route('newTutorial')}}"> <button type="button" style="margin-bottom: 20px" class="btn btn-primary text-dark">Criar novo tutorial</button></a>
-
-    @endauth
-    <div class="row row-cols-4 row-cols-md-4 g-3">
-    @foreach ($tutorials as $tutorial)
-        <div class="col">
-            <div class="card bg-dark text-dark text-center shadow" style="width: 18rem; border-color: #000">
-                <img src="{{$tutorial->thumbnail}} " height="200px" width="200px" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-white"><b>{{$tutorial->name}} </b></h5>
-                    <a href="{{route('tutorial',$tutorial->id)}}" class="btn btn-outline-primary">Acessar</a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-      </div>
-</div>
-<br><br><br>
-   <!-- <h1>Tutoriais</h1>
-    @auth
-    <a href="{{route('newTutorial')}}">Criar novo tutorial</a>
-    @endauth
-    @foreach ($tutorials as $tutorial)
-    <div>
-    <img src="{{$tutorial->thumbnail}}" width="400px"><br>
-    <a href="{{route('tutorial',$tutorial->id)}}">{{$tutorial->name}}</a> |
-    <a href="{{route('user',$tutorial->user_id)}}">{{$tutorial->user->nick}}</a>
-    <hr>
-    </div>
-    @endforeach-->
+<main>
+  @yield('content')
+</main>
 </body>
 </html>
-
-
---}}
-
-@extends('layouts.default')
-@section('content')
-<div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg" >
-  <h1 class="mb-4">Tutoriais</h1>
-  @auth
-  <a href="{{route('newTutorial')}}"> <button type="button" style="margin-bottom: 20px" class="btn btn-primary text-dark">Criar novo tutorial</button></a>
-
-  @endauth
-  <div class="row row-cols-4 row-cols-md-4 g-3">
-  @foreach ($tutorials as $tutorial)
-      <div class="col">
-          <div class="card bg-dark text-dark text-center shadow" style="width: 18rem; border-color: #000">
-              <img src="{{$tutorial->thumbnail}} " height="200px" width="200px" class="card-img-top" alt="...">
-              <div class="card-body">
-                  <h5 class="card-title text-white"><b>{{$tutorial->name}} </b></h5>
-                  <a href="{{route('tutorial',$tutorial->id)}}" class="btn btn-outline-primary">Acessar</a>
-              </div>
-          </div>
-      </div>
-      @endforeach
-    </div>
-</div>
-<br><br><br>
- <!-- <h1>Tutoriais</h1>
-  @auth
-  <a href="{{route('newTutorial')}}">Criar novo tutorial</a>
-  @endauth
-  @foreach ($tutorials as $tutorial)
-  <div>
-  <img src="{{$tutorial->thumbnail}}" width="400px"><br>
-  <a href="{{route('tutorial',$tutorial->id)}}">{{$tutorial->name}}</a> |
-  <a href="{{route('user',$tutorial->user_id)}}">{{$tutorial->user->nick}}</a>
-  <hr>
-  </div>
-  @endforeach-->
-@endsection

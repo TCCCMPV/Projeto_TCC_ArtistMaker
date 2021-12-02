@@ -1,4 +1,4 @@
-
+{{--
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -195,3 +195,31 @@
 </div>
 @endforeach
     -->
+  --}}
+
+  @extends('layouts.default')
+  @section('content')
+  <div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg" >
+    <h1 class="mb-4">Módulos</h1>
+    @auth
+    <a href="{{route('newModule')}}"> <button type="button" style="margin-bottom: 20px" class="btn btn-primary text-dark">Criar novo módulo</button></a>
+
+    @endauth
+    <div class="row row-cols-4 row-cols-md-4 g-3">
+    @foreach ($modules as $module)
+        <div class="col">
+            <div class="card bg-dark text-dark text-center shadow" style="width: 18rem; border-color: #000">
+                <img src="{{$module->thumbnail}} " height="200px" width="200px" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-white"><b>{{$module->name}} </b></h5>
+                    <div><hr class="divider text-white"></div>
+                    <p class="card-text text-white">Descrição</p>
+                    <a href="{{route('module',$module->id)}}" class="btn btn-outline-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
+      </div>
+</div>
+<br><br><br>
+  @endsection
