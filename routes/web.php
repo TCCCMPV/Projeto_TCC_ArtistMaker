@@ -126,7 +126,7 @@ Route::delete('/tutorial/{id}/delete-comment','CommentController@DeleteComment')
 Route::get('/user/{id}', 'UserController@ShowUser')->name('user');
 Route::get('/user/{id}/edit-picture', 'UserController@EditPicture')->name('editUserPicture');
 Route::put('/user/{id}/put-picture', 'UserController@PutPicture')->name('putUserPicture');
-Route::get('/user/{id}/edit-nick', 'UserController@EditNick')->name('putUserNick');
+Route::get('/user/{id}/edit-nick', 'UserController@EditNick')->name('editUserNick');
 Route::put('/user/{id}/put-nick', 'UserController@PutNick')->name('putUserNick');
 
 

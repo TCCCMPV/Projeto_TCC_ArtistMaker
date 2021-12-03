@@ -22,10 +22,10 @@
     <img class="rounded" src="{{ $module->thumbnail }}" width="400px">
     <br>
     <p class="text-break">{!!nl2br($module->description)!!}</p><br>
+    @if (Auth::id() == $module->user_id)
     <a href="{{route('editModuleDesc',$module->id)}}">
         <button class="btn btn-primary text-dark" style="margin-top: 10px"><i class='bx bxs-edit'></i><b> Editar
                 descrição</b></button></a>
-    @if (Auth::id() == $module->user_id)
     <a href="{{ route('editModuleThumb', $module->id) }}">
         <button class="btn btn-primary text-dark" style="margin-top: 10px"> <b> <i class='bx bxs-edit'></i> Editar thumb
             </b> </button> </a>
@@ -33,40 +33,51 @@
     <hr>
 
     @foreach ($contentHasWidgets as $contentHasWidget)
-    {!! nl2br(str_replace(['{$text1}', '{$text2}', '{$text3}', '{$src1}', '{$src2}', '{$src3}', '{$alt1}',
-    '{$alt2}','{$alt3}'], [$contentHasWidget->text1, $contentHasWidget->text2, $contentHasWidget->text3,
-    $contentHasWidget->src1,$contentHasWidget->src2, $contentHasWidget->src3, $contentHasWidget->alt1,
-    $contentHasWidget->alt2, $contentHasWidget->alt3], $contentHasWidget->widget->code))!!}
+    <div class="row">
+        <div class="col-11">
+            {!! nl2br(str_replace(['{$text1}', '{$text2}', '{$text3}', '{$src1}', '{$src2}', '{$src3}', '{$alt1}',
+            '{$alt2}','{$alt3}'], [$contentHasWidget->text1, $contentHasWidget->text2, $contentHasWidget->text3,
+            $contentHasWidget->src1,$contentHasWidget->src2, $contentHasWidget->src3, $contentHasWidget->alt1,
+            $contentHasWidget->alt2, $contentHasWidget->alt3], $contentHasWidget->widget->code))!!}
 
 
-    <form action="{{route('deleteModuleWidget',$contentHasWidget->id)}}" method="POST">
-        @csrf
-        @method('DELETE')
-        
-        <button type="submit" class="btn btn-danger text-dark"><b><i class='bx bxs-trash'></i></b></button>
-    </form>
-    <p>[{{ $contentHasWidget->position }}]</p>
+            <form action="{{route('deleteModuleWidget',$contentHasWidget->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger text-dark"><b><i class='bx bxs-trash'></i></b></button>
+            </form>
+        </div>
+        <div class="col-1 d-flex justify-content-end">
+            <div><span class="badge rounded-pill bg-primary text-dark">Posição: {{ $contentHasWidget->position }}</span></div>
+        </div>
+    </div>
 
     <hr>
     @endforeach
+    @if (auth::id() == $module->user_id)
+        
     <a href="{{route('newModuleWidget1',$module->id)}}"> <button class="btn btn-primary text-dark"><i
-                class='bx bxs-customize'></i><b> Novo componente</b></button></a><br><br><hr class="divider">
+        class='bx bxs-customize'></i><b> Novo componente</b></button></a><br><br>
+        @endif
+        
+    <hr class="divider">
     <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
-    <h1>Comentários:</h1> <br>
-    <form method="post" id="comment" action="{{ route('insertModuleComment', $module->id) }}">
-        @csrf
-        <div class="input-group mb-3">
-            <span class="input-group-text bg-primary text-dark" id="basic-addon1"><i
-                    class='bx bxs-comment-dots'></i></span><textarea maxlength="450"
-                class="form-control form-control bg-dark text-white" name="text" required></textarea> <button
-                form="comment" type="submit" class="btn btn-primary text-dark"><i class='bx bxs-send'></i></button>
-        </div>
-    </form>
-    <br>
-   <hr class="divider">
-    @foreach ($comments as $comment)
-  
-    
+        <h1>Comentários:</h1> <br>
+        <form method="post" id="comment" action="{{ route('insertModuleComment', $module->id) }}">
+            @csrf
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-primary text-dark" id="basic-addon1"><i
+                        class='bx bxs-comment-dots'></i></span><textarea maxlength="450"
+                    class="form-control form-control bg-dark text-white" name="text" required></textarea> <button
+                    form="comment" type="submit" class="btn btn-primary text-dark"><i class='bx bxs-send'></i></button>
+            </div>
+        </form>
+        <br>
+        <hr class="divider">
+        @foreach ($comments as $comment)
+
+
         <div class="row">
 
             <div class="col-6">

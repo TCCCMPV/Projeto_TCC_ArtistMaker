@@ -209,12 +209,7 @@
       </ul>
 
 
-      <form class="d-flex">
-        <input class="form-control rounded-pill me-2 text-white border-primary" style="background-color: #000033"
-          type="search" placeholder="Pesquisar.." aria-label="Pesquisar">
-        <button class="btn text-dark btn-primary rounded-circle" type="submit"><b><i
-              class='bx bx-search'></i></b></button>
-      </form>
+      
     </div>
   </div>
 </nav>  

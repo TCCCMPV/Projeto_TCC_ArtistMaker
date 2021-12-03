@@ -33,7 +33,7 @@ class UserController extends Controller
     public function EditNick($id)
     {
         $user = User::where('id',$id)->first();
-        return view('menu.user.editNick',['id'=>$id,'link'=>'user']);
+        return view('menu.user.editNick',['id'=>$id,'link'=>'user','user'=>$user]);
     }
     public function PutNick(Request $request, $id)
     {

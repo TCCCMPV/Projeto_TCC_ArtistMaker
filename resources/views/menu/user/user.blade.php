@@ -11,10 +11,9 @@
     @endif
     <h1>{{$user->nick}}</h1>
 
-    <br>
     @if (Auth::id() == $user->id)
     <br>
-    <a href="{{route('editUserNick',$id)}}"><button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i>Editar nick</button></a>
+    <a href="{{route('editUserNick',$user->id)}}"><button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i><b> Editar apelido</b></button></a>
 
     @endif
     <hr class="divider">
