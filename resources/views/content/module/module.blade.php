@@ -84,10 +84,12 @@
                 <img class="rounded-circle" src="{{ $comment->user->picture }}" width="50">
                 <a style="margin-left: 6px" href="{{route('user',$comment->user->id)}}">{{ $comment->user->nick}}</a>
                 @if ($comment->user_id == Auth::id())
+                {{--
                 <a href="{{ route('editModuleComment', $comment->id) }}"><button class="btn btn-primary text-dark"
                         style="margin-right: 6px; margin-left: 6px;"><i class='bx bxs-edit'></i></button></a>
                 <button form="comment{{$comment->id}}" type="submit" class="btn btn-danger text-dark"><i
                         class='bx bxs-trash'></i></button>
+                        --}}
                 @endif
             </div>
             <div class="col-6 d-flex justify-content-end">

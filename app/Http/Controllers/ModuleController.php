@@ -153,6 +153,6 @@ class ModuleController extends Controller
         $contentHasWidget = ContentHasWidget::where('id',$id)->first();
         $id = $contentHasWidget->content_id;
         $contentHasWidget->delete();
-        return redirect()->route('moduleCourse',$id);
+        return redirect()->route('module',$id);
     }
 }
