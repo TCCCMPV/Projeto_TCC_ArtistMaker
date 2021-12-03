@@ -3,7 +3,7 @@
 
 
 <div class="container mx-auto p-3 mb-5 mx-auto bg-dark rounded-3 border border-primary shadow-lg">
-    <form action="{{route('insertModuleWidget', $id)}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('insertCourseModuleWidget', $id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @if ($widget == 1)
         <div class="input-group mb-3">

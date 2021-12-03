@@ -9,8 +9,6 @@
         <span class="input-group-text bg-primary text-dark" id="basic-addon2">
             <i class='bx bxs-image-add' ></i>
         </span>
-    
-        
         <input form="image" type="file" name="image" class="form-control bg-dark text-white" placeholder="Escolher arquivollçkl" aria-label="" aria-describedby="basic-addon2" required accept=".jpg, png"><br>
     </div>
     <div class="input-group mb-3 ">

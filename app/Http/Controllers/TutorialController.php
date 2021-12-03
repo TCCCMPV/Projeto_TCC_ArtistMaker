@@ -96,7 +96,7 @@ class TutorialController extends Controller
             'button 1'=>'Ir ao perfil',
             'button 1 href'=>route('user',Auth::id())
         );
-        return view('menu.warning',['data'=>$data,'link'=>'tutorials']);
+        return redirect()->route('user',auth::id());
         
     }
 

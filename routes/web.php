@@ -29,7 +29,24 @@ Route::post('/post/course','CourseController@PostCourse')->name('postCourse');
 
 Route::get('/course/{id}/new-module','CourseController@NewModule')->name('newCourseModule');
 Route::post('/course/{id}/insert-module','CourseController@InsertModule')->name('insertCourseModule');
-Route::get('/course/module/{id}','CourseController@ShowModule')->name('courseModule');
+Route::get('/course/module/{id}','CourseController@ShowModule')->name('moduleCourse');
+
+Route::get('/course/module/{id}/edit-title','CourseController@EditModuleTitle')->name('editCourseModuleTitle');
+Route::put('/course/module/{id}/put-title','CourseController@PutModuleTitle')->name('putCourseModuleTitle');
+Route::get('/course/module/{id}/edit-desc','CourseController@EditModuleDesc')->name('editCourseModuleDesc');
+Route::put('/course/module/{id}/put-desc','CourseController@PutModuleDesc')->name('putCourseModuleDesc');
+Route::get('/course/module/{id}/edit-thumb','CourseController@EditModuleThumb')->name('editCourseModuleThumb');
+Route::put('/course/module/{id}/put-thumb','CourseController@PutModuleThumb')->name('putCourseModuleThumb');
+
+Route::get('/course/module/{id}/new-widget1','CourseController@NewModuleWidget1')->name('newCourseModuleWidget1');
+Route::post('/course/module/{id}/new-widget2','CourseController@NewModuleWidget2')->name('newCourseModuleWidget2');
+Route::post('/course/module/{id}/insert-widget','CourseController@InsertModuleWidget')->name('insertCourseModuleWidget');
+Route::delete('/course/module/{id}/delete-widget','CourseController@DeleteModuleWidget')->name('deleteCourseModuleWidget');
+
+Route::post('/course/module/{id}/new-comment','CommentController@InsertComment')->name('insertCourseModuleComment');
+Route::get('/course/module/{id}/edit-comment','CommentController@EditComment')->name('editCourseModuleComment');
+Route::put('/course/module/{id}/put-comment','CommentController@PutComment')->name('putCourseModuleComment');
+Route::delete('/course/module/{id}/delete-comment','CommentController@DeleteComment')->name('DeleteCourseModuleComment');
 
 Route::post('/course/{id}/new-comment','CommentController@InsertComment')->name('insertCourseComment');
 Route::get('/course/{id}/edit-comment','CommentController@EditComment')->name('editCourseComment');

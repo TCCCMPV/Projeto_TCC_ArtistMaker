@@ -30,4 +30,8 @@ class Content extends Model
     {
         return $this->belongsTo('App\Subcategory');
     }
+    public function content()
+    {
+        return $this->belongsTo('App\Content');
+    }
 }

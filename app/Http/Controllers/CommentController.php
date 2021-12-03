@@ -31,6 +31,10 @@ class CommentController extends Controller
         {
             return redirect()->route('course',$id);
         }
+        if($content->content_type_id == 'course_module')
+        {
+            return redirect()->route('moduleCourse',$id);
+        }
     }
     public function DeleteComment($id)
     {
@@ -48,6 +52,10 @@ class CommentController extends Controller
         if($content->content_type_id == 'course')
         {
             return redirect()->route('course',$content->id);
+        }
+        if($content->content_type_id == 'course_module')
+        {
+            return redirect()->route('moduleCourse',$id);
         }
     }
 }

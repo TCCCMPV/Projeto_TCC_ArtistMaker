@@ -33,7 +33,7 @@
       <span class="input-group-text bg-primary text-dark" id="basic-addon1">
         <i class='bx bx-filter'></i>
       </span>
-      <input type="number" name="position" form="image" class="form-control bg-dark text-white" placeholder="Posição"
+      <input type="number" name="position" class="form-control bg-dark text-white" placeholder="Posição"
         aria-label="Posição" aria-describedby="basic-addon1" min="1" required>
 
     </div>

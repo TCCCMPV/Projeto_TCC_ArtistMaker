@@ -23,8 +23,9 @@
     <p class="text-break">{!!nl2br($course->description)!!}</p><br>
     @if (Auth::id() == $course->user_id)
     <a href=""> <button class="btn btn-primary text-dark" style="margin-top: 10px"><b><i class='bx bxs-edit'></i> Editar
-                thumb</b> </button> </a>
-    <a href="{{route('newCourseModule',$course->id)}}">Criar Módulo</a>
+                thumb</b> </button> </a><br>
+    <a href="{{route('newCourseModule',$course->id)}}"><button style="margin-top: 10px"
+            class="btn btn-primary text-dark"><i class='bx bxs-bookmark-alt-plus'></i><b> Criar Módulo</b></button></a>
     @endif
     <hr>
     @foreach ($modules as $module)
@@ -34,20 +35,26 @@
         </div>
         <div class="col-7">
             <div class="row">
-                <div class="col-12">
-                    <h3>{{$module->name}}</h3>
+                <div class="col-9">
+                    <h3><a href="{{route('moduleCourse',$module->id)}}">{{$module->name}}</a></h3>
+                </div>
+                <div class="col-3 d-flex justify-content-end">
+                    <div>
+                        <div><span class="badge rounded-pill bg-primary text-dark">Posição: {{ $module->position
+                                }}</span></div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p>{!!nl2br($module->description)!!}</p>
+                    <p class="text-break">{!!nl2br($module->description)!!}</p>
                 </div>
             </div>
         </div>
         @endforeach
         <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
-            <hr class="divider text-white">
-            <h1>Comentários:</h1>
+
+            <h1>Comentários:</h1><br>
             <form method="post" id="comment" action="{{ route('insertCourseComment', $course->id) }}">
                 @csrf
                 <div class="input-group mb-3">
@@ -67,9 +74,9 @@
                         <a style="margin-left: 6px" href="{{route('user',$comment->user->id)}}">{{
                             $comment->user->nick}}</a>
                         @if ($comment->user_id == Auth::id())
-                        <a href="{{ route('editCourseComment', $comment->id) }}"><button
+                       {{-- <a href="{{ route('editCourseComment', $comment->id) }}"><button
                                 class="btn btn-primary text-dark" style="margin-right: 6px; margin-left: 6px;"><i
-                                    class='bx bxs-edit'></i></button></a>
+                                    class='bx bxs-edit'></i></button></a>--}}
                         <button form="comment{{$comment->id}}" type="submit" class="btn btn-danger text-dark"><i
                                 class='bx bxs-trash'></i></button>
                         @endif

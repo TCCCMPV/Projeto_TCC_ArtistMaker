@@ -8,8 +8,6 @@
         <span class="input-group-text bg-primary text-dark" id="basic-addon2">
             <i class='bx bx-list-plus' ></i>
         </span>
-    
-        
         <textarea class="form-control form-control bg-dark text-white" form="text" name="text"  placeholder="Texto..." aria-label="Texto..." aria-describedby="basic-addon1" required maxlength="450"></textarea>
     </div>
     <div class="input-group mb-3 ">
