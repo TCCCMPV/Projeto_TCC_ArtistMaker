@@ -17,11 +17,4 @@
         <button class="btn btn-primary text-dark" form="desc" type="submit"><b>Enviar alterações</b> </button>
     </div>
 </div>
-<!--
-    <form action="{{route('putModuleDesc',$module->id)}}" method="post">
-        @csrf
-        @method('PUT')
-        <label>Descrição: </label><textarea name="desc" cols="100" rows="5" placeholder="{{$module->description}}">{{$module->description}} </textarea>
-        <input type="submit">
-    </form>-->
 @endsection

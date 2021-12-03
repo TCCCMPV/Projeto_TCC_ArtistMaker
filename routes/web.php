@@ -26,10 +26,17 @@ Route::get('/search/tutorial','SearchController@Showtutorials')->name('searchTut
 Route::get('/course/{id}','CourseController@ShowCourse')->name('course');
 Route::get('/new/course','CourseController@NewCourse')->name('newCourse');
 Route::post('/post/course','CourseController@PostCourse')->name('postCourse');
+Route::delete('/course/{id}/delete','CourseController@Delete')->name('deleteCourse');
 
 Route::get('/course/{id}/new-module','CourseController@NewModule')->name('newCourseModule');
 Route::post('/course/{id}/insert-module','CourseController@InsertModule')->name('insertCourseModule');
 Route::get('/course/module/{id}','CourseController@ShowModule')->name('moduleCourse');
+route::delete('/course/module/{id}/delete','CourseController@DeleteModule')->name('deleteCourseModule');
+
+Route::get('/course/{id}/edit-title','CourseController@EditTitle')->name('editCourseTitle');
+Route::put('/course/{id}/put-title','CourseController@PutTitle')->name('putCourseTitle');
+Route::get('/course/{id}/edit-thumb','CourseController@EditThumb')->name('editCourseThumb');
+Route::put('/course/{id}/put-thumb','CourseController@PutThumb')->name('putCourseThumb');
 
 Route::get('/course/module/{id}/edit-title','CourseController@EditModuleTitle')->name('editCourseModuleTitle');
 Route::put('/course/module/{id}/put-title','CourseController@PutModuleTitle')->name('putCourseModuleTitle');
@@ -117,6 +124,10 @@ Route::delete('/tutorial/{id}/delete-comment','CommentController@DeleteComment')
 /*-----------------User---------------------------------*/
 
 Route::get('/user/{id}', 'UserController@ShowUser')->name('user');
+Route::get('/user/{id}/edit-picture', 'UserController@EditPicture')->name('editUserPicture');
+Route::put('/user/{id}/put-picture', 'UserController@PutPicture')->name('putUserPicture');
+Route::get('/user/{id}/edit-nick', 'UserController@EditNick')->name('putUserNick');
+Route::put('/user/{id}/put-nick', 'UserController@PutNick')->name('putUserNick');
 
 
 /*

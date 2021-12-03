@@ -13,7 +13,7 @@
                 <i class='bx bxs-edit'></i> Editar título</b> </button></a>
     <button form="deletemodule" type='submit' class="btn  btn-outline-danger"> <b> <i class='bx bxs-trash'></i>
             Deletar módulo</b> </button>
-    <form id="deletemodule" method="POST" action="">
+    <form id="deletemodule" method="POST" action="{{route('deleteCourseModule',$module->id)}}">
         @csrf
         @method('DELETE')
     </form>
@@ -54,7 +54,7 @@
 
     <hr class="divider text-white">
 
-
+ <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
     <h1>Comentários:</h1> <br>
     <form method="post" id="comment" action="{{ route('insertCourseModuleComment', $module->id) }}">
         @csrf
@@ -66,7 +66,7 @@
         </div>
     </form><br>
 
-    <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
+   
 
         @foreach ($comments as $comment)
         <div style="margin: 10px">
@@ -76,9 +76,9 @@
                     <img class="rounded-circle" src="{{ $comment->user->picture }}" width="50">
                     <a style="margin-left: 6px" href="{{route('user',$comment->user->id)}}">{{
                         $comment->user->nick}}</a>
-                    @if ($comment->user_id == Auth::id())
+                   <!-- @if ($comment->user_id == Auth::id())
                     <a href="{{ route('editTutorialComment', $comment->id) }}"><button class="btn btn-primary text-dark"
-                            style="margin-right: 6px; margin-left: 6px;"><i class='bx bxs-edit'></i></button></a>
+                            style="margin-right: 6px; margin-left: 6px;"><i class='bx bxs-edit'></i></button></a>-->
                     <button form="comment{{$comment->id}}" type="submit" class="btn btn-danger text-dark"><i
                             class='bx bxs-trash'></i></button>
                     @endif

@@ -4,7 +4,9 @@
     <img class="rounded-circle fixed-center" height="200" src="{{$user->picture}}"><br>
     @if (Auth::id() == $user->id)
     <br>
-    <a><button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i>Editar foto</button></a>
+    <a href="{{route('editUserPicture',$user->id)}}">
+      <button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i><b> Editar foto</b></button>
+    </a>
 
     @endif
     <h1>{{$user->nick}}</h1>
@@ -12,23 +14,12 @@
     <br>
     @if (Auth::id() == $user->id)
     <br>
-    <a><button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i>Editar nick</button></a>
+    <a href="{{route('editUserNick',$id)}}"><button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i>Editar nick</button></a>
 
     @endif
     <hr class="divider">
     <h4><i class='bx bxs-user'></i> Nome: {{$user->full_name}}</h4><br>
-    <h4><i class='bx bxs-envelope'></i> Email: {{$user->email}}</h4><br>
-    <h4><i class='bx bxs-info-circle'></i> Biografia: </h4>
-    @if (Auth::id() == $user->id)
-    <br>
-    <button class="btn btn-primary text-dark"><i class='bx bxs-edit'></i></button>
-    <button class="btn btn-danger text-dark"><i class='bx bxs-trash'></i></button>
-
-
-    @endif
-    <br>
-    <p>{{$user->bio}}</p><br>
-
+    <h4><i class='bx bxs-envelope'></i> Email: {{$user->email}}</h4>
     <hr>
 
     <h1>Conteúdo:</h1><br>

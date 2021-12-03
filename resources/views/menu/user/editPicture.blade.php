@@ -10,7 +10,7 @@
     <h1>Imagem atual:</h1>
     </div>
     <div class="input-group mb-3">
-    <img width="400" src="{{$picture->picture}}">
+    <img width="400" src="{{$user->picture}}">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text bg-primary text-dark" id="basic-addon2">

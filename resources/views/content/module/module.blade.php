@@ -50,8 +50,8 @@
     <hr>
     @endforeach
     <a href="{{route('newModuleWidget1',$module->id)}}"> <button class="btn btn-primary text-dark"><i
-                class='bx bxs-customize'></i><b> Novo componente</b></button></a>
-   
+                class='bx bxs-customize'></i><b> Novo componente</b></button></a><br><br><hr class="divider">
+    <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
     <h1>Comentários:</h1> <br>
     <form method="post" id="comment" action="{{ route('insertModuleComment', $module->id) }}">
         @csrf
@@ -63,9 +63,10 @@
         </div>
     </form>
     <br>
+   <hr class="divider">
     @foreach ($comments as $comment)
-    <hr class="divider text-white">
-    <div>
+  
+    
         <div class="row">
 
             <div class="col-6">

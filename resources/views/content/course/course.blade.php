@@ -7,11 +7,11 @@
             }}</a> Categoria/Subcategoria: {{$course->subcategory->category_id}}/{{$course->subcategory_id}}</h6>
     <br>
     @if (Auth::id() == $course->user_id)
-    <a href=""> <button type="button" class="btn text-dark btn-primary"><b>
+    <a href="{{route('editCourseTitle',$course->id)}}"> <button type="button" class="btn text-dark btn-primary"><b>
                 <i class='bx bxs-edit'></i> Editar título</b> </button></a>
     <button form="deletecourse" type='submit' class="btn  btn-outline-danger"> <b> <i class='bx bxs-trash'></i>
             Deletar course</b> </button>
-    <form id="deletecourse" method="POST" action="">
+    <form id="deletecourse" method="POST" action="{{route('deleteCourse',$course->id)}}">
         @csrf
         @method('DELETE')
     </form>
@@ -22,14 +22,14 @@
     <br>
     <p class="text-break">{!!nl2br($course->description)!!}</p><br>
     @if (Auth::id() == $course->user_id)
-    <a href=""> <button class="btn btn-primary text-dark" style="margin-top: 10px"><b><i class='bx bxs-edit'></i> Editar
+    <a href="{{route('editCourseThumb',$course->id)}}"> <button class="btn btn-primary text-dark" style="margin-top: 10px"><b><i class='bx bxs-edit'></i> Editar
                 thumb</b> </button> </a><br>
     <a href="{{route('newCourseModule',$course->id)}}"><button style="margin-top: 10px"
             class="btn btn-primary text-dark"><i class='bx bxs-bookmark-alt-plus'></i><b> Criar Módulo</b></button></a>
     @endif
     <hr>
     @foreach ($modules as $module)
-    <div class="row">
+    <div class="row" >
         <div class="col-5">
             <img class="img-fluid rounded" style="max-width: 400px; max-height: 400px" src="{{$module->thumbnail}}">
         </div>
@@ -50,10 +50,12 @@
                     <p class="text-break">{!!nl2br($module->description)!!}</p>
                 </div>
             </div>
-        </div>
+        </div> 
         @endforeach
-        <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
+        <br><br><br>
+       <hr class="divider">
 
+        <div class="container border border-primary rounded-3 text-white" style="background-color: rgb(24, 24, 24);">
             <h1>Comentários:</h1><br>
             <form method="post" id="comment" action="{{ route('insertCourseComment', $course->id) }}">
                 @csrf

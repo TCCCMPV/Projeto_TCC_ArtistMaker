@@ -48,6 +48,39 @@ class CourseController extends Controller
         return redirect()->route('user',Auth::id());
         
     }
+    public function Delete($id)
+    {
+        $course = Content::where('id',$id)->first();
+        $course->delete();
+        return redirect()->route('user',auth::id());
+    }
+
+    //edits
+
+    public function EditTitle($id)
+    {
+        $course = Content::where('id',$id)->first();
+        return view('content.course.editTitle',['link'=>'courses','$id'=>$id,'course'=>$course]);
+    }
+    public function PutTitle(Request $request, $id)
+    {
+        $course = Content::where('id',$id)->first();
+        $course->name = $request->input('name');
+        $course->save();
+        return redirect()->route('course',$id);
+    }
+    public function EditThumb($id)
+    {
+        $course = Content::where('id',$id)->first();
+        return view('content.course.editThumb',['id'=>$id,'link'=>'courses','course'=>$course]);
+    }
+    public function PutThumb(Request $request, $id)
+    {
+        $course = Content::where('id',$id)->first();
+        $course->thumbnail = Storage::url($request->file('thumb')->store('public/'.auth::id().'/courses/thumbnails'));
+        $course->save();
+        return redirect()->route('course',$id);
+    }
 
     //modules
     public function NewModule($id)
@@ -81,6 +114,13 @@ class CourseController extends Controller
         $comments = Comment::where('content_id',$id)->get();
         $contentHasWidgets = $contentHasWidgets->sortBy('position');
         return view('content.course.module',['link'=>'courses','module'=>$module,'contentHasWidgets'=>$contentHasWidgets,'comments'=>$comments]);
+    }
+    public function DeleteModule($id)
+    {
+        $course = Content::where('id',$id)->first();
+        $course_id = $course->content_id;
+        $course->delete();
+        return redirect()->route('course',$course_id);
     }
 
     //edit module
