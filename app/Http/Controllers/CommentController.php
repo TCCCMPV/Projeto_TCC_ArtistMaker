@@ -41,6 +41,7 @@ class CommentController extends Controller
         $comment = Comment::where('id',$id)->first();
         $content = Content::where('id',$comment->content_id)->first();
         $comment->delete();
+        
         if($content->content_type_id == 'tutorial')
         {
             return redirect()->route('tutorial',$content->id);

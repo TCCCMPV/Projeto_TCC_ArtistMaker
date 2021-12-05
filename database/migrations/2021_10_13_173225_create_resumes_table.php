@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateResumesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('resumes', function (Blueprint $table) {
@@ -21,12 +16,6 @@ class CreateResumesTable extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('resumes');

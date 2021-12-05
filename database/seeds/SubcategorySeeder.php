@@ -7,11 +7,6 @@ use Illuminate\Database\Seeder;
 
 class SubcategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         //fundamentos-> forma, linha, perspectiva, anatomia, linhas, cor, composição, luz e sombra, outros fundamentos

@@ -9,7 +9,7 @@ Auth::routes();
 /*-----------------Menu---------------------------------*/
 
 Route::get('/', function () {
-    return view('menu.welcome');
+    return view('menu.welcome',['navbar'=>false,'backgroundImage'=>true]);
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -128,13 +128,3 @@ Route::get('/user/{id}/edit-picture', 'UserController@EditPicture')->name('editU
 Route::put('/user/{id}/put-picture', 'UserController@PutPicture')->name('putUserPicture');
 Route::get('/user/{id}/edit-nick', 'UserController@EditNick')->name('editUserNick');
 Route::put('/user/{id}/put-nick', 'UserController@PutNick')->name('putUserNick');
-
-
-/*
-Route::get('/gallery', 'GalleryController')->name('Gallery');
-Route::get('/user/{id}', 'UserController')->name('User');
-Route::get('/profile', 'ProfileController')->name('Profile');
-Route::get('/chat', 'ChatController')->name('Chat');
-
-Route::get('/complaint', 'ComplaintController')->name('Complaint');
-Route::get('/feedback', 'FeedbackController')->name('Feedback');*/

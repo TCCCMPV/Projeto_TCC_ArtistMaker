@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUserViewsContentsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('user_views_contents', function (Blueprint $table) {
@@ -22,12 +17,6 @@ class CreateUserViewsContentsTable extends Migration
             $table->boolean('deleted')->default(false);
         });
     }
-//visualization, completed
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('user_views_contents');

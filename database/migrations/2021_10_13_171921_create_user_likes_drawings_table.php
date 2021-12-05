@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUserLikesDrawingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('user_likes_drawings', function (Blueprint $table) {
@@ -19,12 +14,6 @@ class CreateUserLikesDrawingsTable extends Migration
             $table->foreignId('drawing_id');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('user_likes_drawings');

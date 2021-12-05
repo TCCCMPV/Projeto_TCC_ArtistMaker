@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateContentHasWidgetsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('content_has_widgets', function (Blueprint $table) {
@@ -29,12 +24,6 @@ class CreateContentHasWidgetsTable extends Migration
             $table->string('src3')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('content_has_widgets');

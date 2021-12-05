@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCommentImagesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('comment_images', function (Blueprint $table) {
@@ -19,12 +14,6 @@ class CreateCommentImagesTable extends Migration
             $table->foreignId('comment_id');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('comment_images');

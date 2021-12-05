@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateComplaintImagesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('complaint_images', function (Blueprint $table) {
@@ -19,12 +14,6 @@ class CreateComplaintImagesTable extends Migration
             $table->foreignId('complaint_id');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('complaint_images');

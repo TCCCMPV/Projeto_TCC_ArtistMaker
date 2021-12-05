@@ -6,23 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateComplaintTypesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('complaint_types', function (Blueprint $table) {
             $table->string('id')->unique();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('complaint_types');

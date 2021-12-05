@@ -4,11 +4,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         // $this->call(UserSeeder::class);
@@ -16,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubcategorySeeder::class);
         $this->call(ContentTypeSeeder::class);
         $this->call(WidgetSeeder::class);
+
         factory(App\User::class, 10)->create();
         factory(App\Content::class, 10)->create();
     }

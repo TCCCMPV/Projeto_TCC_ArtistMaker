@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateWidgetsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('widgets', function (Blueprint $table) {
@@ -19,12 +14,6 @@ class CreateWidgetsTable extends Migration
             $table->longText('code');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('widgets');

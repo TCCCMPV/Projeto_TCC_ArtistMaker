@@ -6,23 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateContentTypesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('content_types', function (Blueprint $table) {
             $table->string('id')->unique();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('content_types');

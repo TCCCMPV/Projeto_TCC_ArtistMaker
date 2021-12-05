@@ -36,12 +36,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
     }
-    //$table->foreignId('user_id');
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('users');

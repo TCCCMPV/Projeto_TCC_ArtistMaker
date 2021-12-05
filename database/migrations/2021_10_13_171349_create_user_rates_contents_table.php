@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUserRatesContentsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('user_rates_contents', function (Blueprint $table) {
@@ -20,12 +15,6 @@ class CreateUserRatesContentsTable extends Migration
             $table->float('avaliation',1,1);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('user_rates_contents');

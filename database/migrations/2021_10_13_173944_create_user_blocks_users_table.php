@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUserBlocksUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('user_blocks_users', function (Blueprint $table) {
@@ -19,12 +14,6 @@ class CreateUserBlocksUsersTable extends Migration
             $table->foreignId('blocked_id')->references('id')->on('users');;
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('user_blocks_users');

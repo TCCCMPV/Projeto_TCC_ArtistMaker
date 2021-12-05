@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTalkImagesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('talk_images', function (Blueprint $table) {
@@ -19,12 +14,6 @@ class CreateTalkImagesTable extends Migration
             $table->foreignId('user_talks_user_id');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('talk_images');
